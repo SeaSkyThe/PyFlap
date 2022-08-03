@@ -11,10 +11,10 @@ body {
     margin: 0;
 }
 
-footer {
+#footer {
     position: absolute;
     bottom: 0;
-    width: 100%;
+    width: 98%;
     height: 50px;
     margin-bottom: 50px;
 }
@@ -37,6 +37,8 @@ div#main {
 div#header {
     margin: 0em 0px 0.5em 0px;
     text-align: center;
+    margin-bottom: 3em;
+    margin-top: 3em;
 }
 
 div#header a {

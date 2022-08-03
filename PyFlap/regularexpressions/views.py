@@ -3,7 +3,7 @@ import re
 
 from .forms import RegexForm
 # Create your views here.
-def index(request):
+def regex_page(request):
     context = {
 
     }
