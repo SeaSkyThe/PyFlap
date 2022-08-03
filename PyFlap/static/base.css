@@ -1,0 +1,231 @@
+body {
+    text-align: center;
+    color: #888888;
+    font-size-adjust: none;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    line-height: normal;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1em;
+    margin: 0;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+    margin-bottom: 50px;
+}
+
+div {
+    display: block;
+}
+
+p {
+    text-align: center;
+}
+
+div#main {
+    margin: 0px auto;
+    max-width: 900px;
+    text-align: left;
+}
+
+/* HEADER TITLE */
+div#header {
+    margin: 0em 0px 0.5em 0px;
+    text-align: center;
+}
+
+div#header a {
+    text-decoration: none;
+}
+
+a {
+    color: #666666;
+}
+
+span#title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 5em;
+    font-weight: bold;
+    color: #444444;
+    letter-spacing: -1px;
+    text-align: center;
+}
+
+/* FORM */
+form {
+    display: block;
+    margin-top: 0em;
+}
+
+div#main table {
+    width: 100%;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    display: table;
+    box-sizing: border-box;
+    text-indent: initial;
+    border-color: grey;
+}
+
+tbody {
+    display: table-row-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+
+tr {
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+}
+
+td {
+    padding: 0;
+    display: table-cell;
+    vertical-align: inherit;
+}
+
+div#main table {
+    width: 100%;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    display: table;
+    box-sizing: border-box;
+    text-indent: initial;
+    border-color: grey;
+}
+
+tbody {
+    display: table-row-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+
+tr {
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+}
+
+/* LABELS E INPUTS */
+label {
+    cursor: default;
+}
+
+label#regex_label {
+    margin-left: 5px;
+    cursor: default;
+}
+
+input#regex {
+    width: 100%;
+    margin-right: 5px;
+    padding: 8px;
+    font-size: 14px;
+    max-width: 100%;
+    background: #fafafa;
+    color: rgb(102, 102, 102);
+    background-color: rgb(255, 255, 255);
+
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.round {
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    outline: none;
+    color: #ededed;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 8px;
+}
+
+
+label#test_string_label {
+    margin-left: 5px;
+    cursor: default;
+}
+
+input#test_string {
+    width: 100%;
+
+    margin-bottom: 20px;
+    padding: 8px;
+    background: #fafafa;
+    color: rgb(102, 102, 102);
+    background-color: rgb(255, 255, 255);
+
+    margin-top: 1em;
+}
+
+input {
+    background-color: #ffffff;
+    border: 1px solid #555555;
+    font-size: 14px;
+    font-family: 'Montserrat', sans-serif;
+    padding: 5px;
+    color: #666666;
+}
+
+
+/* SLASHES */
+
+td#left_slash {
+    text-align: right;
+}
+
+td#right_slash {
+    text-align: left;
+}
+
+td.slash {
+    vertical-align: top;
+    padding: 2.4em 5px 0 5px;
+
+}
+
+span.slash {
+    display: inline;
+    font-size: 42px;
+    font-weight: bold;
+    color: #666666;
+    line-height: 58%;
+
+}
+
+/* BUTTON */
+#test_button_div {
+
+    margin-top: 1em;
+    padding: 0;
+    border: 1px solid #ccc;
+    border-radius: 3px 3px 3px 3px;
+    display: block;
+    margin-bottom: 2em;
+}
+
+button {
+    background: #eaeaea;
+
+    cursor: pointer;
+    border-radius: 3px;
+    background-image: -moz-linear-gradient(#fafafa, #eaeaea);
+    background-image: -webkit-linear-gradient(#fafafa, #eaeaea);
+    background-image: linear-gradient(#fafafa, #eaeaea);
+    background-repeat: repeat-x;
+    width: 100%;
+    color: #444444;
+
+}
