@@ -1,9 +1,9 @@
 {% extends 'base.html' %} 
 {% load static %}
 {% block content %}
-
-
-<form method="post" action="/regularexpressions/" id="regexForm" action="" method="post">
+<span id="sub-title" >Regex Validation</span>
+<link rel="stylesheet" href="{% static 'css/regex/regex-page.css'%}" />
+<form method="post" action="/regularexpressions/" id="regexForm" action="" method="post" class="regex-form">
     {% csrf_token %} 
     <table>
         <tbody>

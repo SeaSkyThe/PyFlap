@@ -34,6 +34,11 @@ div#main {
     text-align: left;
 }
 
+/* CONTENT PAGE */
+.content-page {
+    text-align: center;
+}
+
 /* HEADER TITLE */
 header#header {
     background-color: #F8F9FA;
@@ -64,15 +69,6 @@ span#title {
 }
 
 /* FORM */
-form {
-    display: block;
-    margin-top: 0em;
-}
-
-div#main table {
-    width: 100%;
-}
-
 table {
     border-collapse: collapse;
     border-spacing: 0;
@@ -130,53 +126,6 @@ label {
     cursor: default;
 }
 
-label#regex_label {
-    margin-left: 5px;
-    cursor: default;
-}
-
-input#regex {
-    width: 100%;
-    margin-right: 5px;
-    padding: 8px;
-    font-size: 14px;
-    max-width: 100%;
-    background: #fafafa;
-    color: rgb(102, 102, 102);
-    background-color: rgb(255, 255, 255);
-
-    margin-top: 1em;
-    margin-bottom: 1em;
-}
-
-.round {
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    outline: none;
-    color: #ededed;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-    padding: 8px;
-}
-
-
-label#test_string_label {
-    margin-left: 5px;
-    cursor: default;
-}
-
-input#test_string {
-    width: 100%;
-
-    margin-bottom: 20px;
-    padding: 8px;
-    background: #fafafa;
-    color: rgb(102, 102, 102);
-    background-color: rgb(255, 255, 255);
-
-    margin-top: 1em;
-}
-
 input {
     background-color: #ffffff;
     border: 1px solid #555555;
@@ -184,66 +133,4 @@ input {
     font-family: 'Montserrat', sans-serif;
     padding: 5px;
     color: #666666;
-}
-
-
-/* SLASHES */
-
-td#left_slash {
-    text-align: right;
-}
-
-td#right_slash {
-    text-align: left;
-}
-
-td.slash {
-    vertical-align: top;
-    padding: 2.4em 5px 0 5px;
-
-}
-
-span.slash {
-    display: inline;
-    font-size: 42px;
-    font-weight: bold;
-    color: #666666;
-    line-height: 58%;
-
-}
-
-/* BUTTON */
-#test_button_div {
-
-    margin-top: 1em;
-    padding: 0;
-    border: 1px solid #ccc;
-    border-radius: 3px 3px 3px 3px;
-    display: block;
-    margin-bottom: 2em;
-    width: 100%;
-}
-
-button#test_button {
-    background: #eaeaea;
-
-    cursor: pointer;
-    border-radius: 3px;
-    background-image: -moz-linear-gradient(#fafafa, #eaeaea);
-    background-image: -webkit-linear-gradient(#fafafa, #eaeaea);
-    background-image: linear-gradient(#fafafa, #eaeaea);
-    background-repeat: repeat-x;
-    width: 100%;
-    color: #444444;
-
-
-}
-
-/* CHEATSHEET LINK HOVER */
-.cheatsheet-link {
-    color: #17A2B8;
-}
-
-.cheatsheet-link:hover {
-    color: black;
 }
