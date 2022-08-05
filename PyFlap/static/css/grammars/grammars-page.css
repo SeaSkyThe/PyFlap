@@ -1,0 +1,160 @@
+/* grammar SUBTITLE */
+#sub-title {
+    font-size: 22px;
+    color: #17A2B8;
+    font-weight: 600;
+}
+
+/* FORM */
+form#grammarForm {
+    display: block;
+    margin-top: 0em;
+}
+
+/* RULES LIST */
+div#grammar_rule_list {
+    display: block;
+    margin-top: 0em;
+    padding-top: 1em;
+    text-align: center;
+    text-align: -webkit-center;
+}
+
+.rule {
+    background-color: #17A2B8;
+    color: white;
+    padding: 5 50 5 50;
+    text-align: center;
+}
+
+/* Labels e Inputs */
+label#grammar_label {
+
+    margin-left: 5px;
+    cursor: default;
+}
+
+/* left half div  */
+
+table#whole_table {
+    width: 100%;
+}
+
+#left-table {
+    width: 50%;
+    padding-top: 2em;
+}
+
+#right-table {
+    width: 50%;
+
+}
+
+input#rule_left_side,
+input#rule_right_side {
+    padding: 8px;
+    font-size: 14px;
+    max-width: 100%;
+    background: #fafafa;
+    color: rgb(102, 102, 102);
+    background-color: rgb(255, 255, 255);
+
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+i#rule_arrow {
+    font-size: 1.5em;
+    vertical-align: middle;
+}
+
+
+
+.round {
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    outline: none;
+    color: #ededed;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 8px;
+}
+
+
+label#test_string_label {
+    margin-left: 5px;
+    cursor: default;
+}
+
+input#grammar_test_string {
+    width: 100%;
+
+    margin-bottom: 20px;
+    padding: 8px;
+    background: #fafafa;
+    color: rgb(102, 102, 102);
+    background-color: rgb(255, 255, 255);
+
+    margin-top: 1em;
+}
+
+
+/* BUTTONS */
+#test_button_div {
+    margin-top: 1em;
+    padding: 0;
+    border: 1px solid #ccc;
+    border-radius: 3px 3px 3px 3px;
+    display: block;
+    margin-bottom: 2em;
+    width: 100%;
+}
+
+button#test_button {
+    background: #eaeaea;
+
+    cursor: pointer;
+    border-radius: 3px;
+    background-image: -moz-linear-gradient(#fafafa, #eaeaea);
+    background-image: -webkit-linear-gradient(#fafafa, #eaeaea);
+    background-image: linear-gradient(#fafafa, #eaeaea);
+    background-repeat: repeat-x;
+    width: 100%;
+    color: #444444;
+
+}
+
+#add_rule_button_div {
+    margin-top: 1em;
+    padding: 0;
+    border: 1px solid #ccc;
+    border-radius: 3px 3px 3px 3px;
+    display: block;
+    margin-bottom: 1em;
+    width: 100%;
+}
+
+button#add_rule_button {
+    background: #eaeaea;
+    cursor: pointer;
+    border-radius: 3px;
+    background-image: -moz-linear-gradient(#fafafa, #eaeaea);
+    background-image: -webkit-linear-gradient(#fafafa, #eaeaea);
+    background-image: linear-gradient(#fafafa, #eaeaea);
+    background-repeat: repeat-x;
+    width: 100%;
+    color: #444444;
+}
+
+
+
+/* CHEATSHEET LINK HOVER */
+.cheatsheet-link {
+    color: #17A2B8;
+}
+
+.cheatsheet-link:hover {
+    color: black;
+}
+
+/* PARTE ESQUERDA DA PAGINA */

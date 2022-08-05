@@ -1,5 +1,132 @@
 {% extends 'base.html' %} 
 {% load static %}
 {% block content %}
-    
+<span id="sub-title" >Regular Grammars Validation</span>
+<link rel="stylesheet" href="{% static 'css/grammars/grammars-page.css'%}" />
+ 
+<table id="whole_table">
+    <tbody>
+        <tr>
+            <td id="left-table">
+                <table >
+                    <tbody>
+                        <form method="post" action="{% url 'grammars_page' %}" id="grammarForm" action="" method="post" class="grammar-form">
+                            {% csrf_token %}
+                            <tr>  <!-- TEXTO DO INPUT DA REGRA -->
+                                <td>
+                                    <label id="grammar_label" for="grammar">To add a rule to your grammar, type it below: </label>
+                                </td>
+                                
+                            </tr> 
+                            <tr class="input_rule" ><!-- INPUT DA DA REGRA -->
+                                <td colspan="2">
+                                    {{ grammarform.grammarRuleLeft }}
+                                    <i class='bx bx-right-arrow-alt' id="rule_arrow"></i>
+                                    {{ grammarform.grammarRuleRight }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2"> <!-- BOTAO DE ADICIONAR REGRA -->
+                                    <div id="add_rule_button_div">
+                                        <button id="add_rule_button" type="submit" class="btn">ADD RULE</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </form>
+                        <form method="post" action="{% url 'grammars_page' %}" id="grammarForm" action="" method="post" class="grammar-form">
+                            {% csrf_token %}
+                            <tr><!-- TEXTO DO INPUT DA STRING DE TESTE -->
+                                <td colspan="2">
+                                    <br>
+                                    <label id="test_string_label" for="test_string">Your sentence to test the grammar:</label>
+                                </td>
+                            </tr>
+                            <tr><!-- INPUT DA STRING DE TESTE -->
+                                <td colspan="2">
+                                    {{ grammartestform.testString }}
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="2"> <!-- BOTAO DE VALIDAR -->
+                                    <div id="test_button_div">
+                                        <button id="test_button" type="submit" class="btn">TEST</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </form>
+                    </tbody>
+                </table>
+                
+            </td>
+            {% comment %} RIGHT SIDE PART OF THE PAGE {% endcomment %}
+            <td id="right-table" class="text-center">
+                <div id="grammar_rule_list"> 
+                    <table >
+                        <tbody>
+                            <tr>  <!-- TEXTO TITULO - SUA GRAMATICA -->
+                                <td class="text-center text-primary">
+                                    <p id="grammar_label" for="grammar" >Your Grammar</p>
+                                </td>
+                                
+                            </tr> 
+                            <!-- REGRAS - CADA REGRA É UMA TABLE ROW -->
+                            <tr>  
+                                <td class="rule">
+                                    S -> A | B | a
+                                </td>
+                            </tr>
+                            <tr >   
+                                <td  class="rule">
+                                    S -> A | B | a
+                                </td>
+                            </tr> 
+                            <tr >   
+                                <td class="rule">
+                                    S -> A | B | a
+                                </td>
+                            </tr> 
+                            <tr >   
+                                <td class="rule">
+                                    S -> A | B | a
+                                </td>
+                            </tr> 
+                            <tr >   
+                                <td class="rule">
+                                    S -> A | B | a
+                                </td>
+                            </tr> 
+                            <tr >   
+                                <td class="rule">
+                                    S -> A | B | a
+                                </td>
+                            </tr> 
+                            <tr >   
+                                <td class="rule">
+                                    S -> A | B | a
+                                </td>
+                            </tr> 
+                            <tr >   
+                                <td class="rule">
+                                    S -> A | B | a
+                                </td>
+                            </tr> 
+                            <tr >   
+                                <td class="rule">
+                                    S -> A | B | a
+                                </td>
+                            </tr> 
+                        </tbody>
+                    </table>
+                </div>
+            </td>
+
+        </tr>
+    </tbody>
+
+</table>
+
+                    
+
 {% endblock %}
+
