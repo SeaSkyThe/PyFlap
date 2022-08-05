@@ -1,7 +1,8 @@
 {% extends 'base.html' %} 
+{% load static %}
 {% block content %}
 
-    
+
 <form method="post" action="/regularexpressions/" id="regexForm" action="" method="post">
     {% csrf_token %} 
     <table>
@@ -38,24 +39,27 @@
                             </tr>
 
                             <tr>
-                                <td> <!-- BOTAO DE VALIDAR -->
+                                <td colspan="2"> <!-- BOTAO DE VALIDAR -->
                                     <div id="test_button_div">
                                         <button id="test_button" type="submit" class="btn">TEST</button>
                                     </div>
-                                    
-                                    {% if regex_validation %}
-                                        <p style="color: green;">VALID REGEX</p>
-                                    {% else %}
-                                        <p style="color: red;">INVALID REGEX</p>
+                                    {% if invalid_regex %}
+                                        <p style="color: red;">INVALID REGEX SENTENCE: {{error_message}}</p>
+                                    {% elif string_validation %}
+                                        <p style="color: green;">VALID</p>
+                                    {% elif string_validation == False %}
+                                        <p style="color: red;">INVALID</p>
                                     {% endif %}
+                                        
+                                    
                                 </td>
                             </tr>
 
 
                             <tr> <!-- LINK PARA CHEATSHEET DE REGEX-->
                                 <td>
-                                    <a href="https://cheatography.com/davechild/cheat-sheets/regular-expressions/">
-                                        <p>Regular Expression Cheatsheet</p>
+                                    <a href="https://cheatography.com/davechild/cheat-sheets/regular-expressions/" target="_blank">
+                                        <p class="cheatsheet-link">Regular Expression Cheatsheet</p>
                                     </a>
                                 </td>
                                 
@@ -77,11 +81,3 @@
 
 {% endblock %}
 
-{% block footer %}
-    
-    <div id="footer">
-        <p>Inspired by <a href="https://pythex.org">Pythex</a>. For a complete reference, see the official <a href="https://docs.python.org/2/library/re.html"><tt>re</tt> module documentation</a>.</p>
-        <p id="authorship">Made by <a href="http://gihtub.com/SeaSkyThe">Marcelo Eduardo</a> and  <a href="http://gihtub.com/AlvaroSato">Alvaro Sato</a>.</p>
-    </div>
-       
-{% endblock %}

@@ -12,12 +12,13 @@ body {
 }
 
 #footer {
-    position: absolute;
+    text-align: center;
+    /* position: absolute; */
     bottom: 0;
-    width: 98%;
-    height: 50px;
-    margin-bottom: 50px;
+    left: 27em;
+    padding-top: 15em;
 }
+
 
 div {
     display: block;
@@ -34,6 +35,10 @@ div#main {
 }
 
 /* HEADER TITLE */
+header#header {
+    background-color: #F8F9FA;
+}
+
 div#header {
     margin: 0em 0px 0.5em 0px;
     text-align: center;
@@ -216,9 +221,10 @@ span.slash {
     border-radius: 3px 3px 3px 3px;
     display: block;
     margin-bottom: 2em;
+    width: 100%;
 }
 
-button {
+button#test_button {
     background: #eaeaea;
 
     cursor: pointer;
@@ -230,4 +236,14 @@ button {
     width: 100%;
     color: #444444;
 
+
+}
+
+/* CHEATSHEET LINK HOVER */
+.cheatsheet-link {
+    color: #17A2B8;
+}
+
+.cheatsheet-link:hover {
+    color: black;
 }
