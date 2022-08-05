@@ -21,6 +21,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', TemplateView.as_view(template_name='home/index.html'), name='homepage'),
     path('regularexpressions/', include('regularexpressions.urls')),
-    #path('grammar/', include('grammar.urls')),
+    path('grammars/', include('grammars.urls')),
     #path('finiteautomata/', include('finiteautomata.urls')),
 ]
