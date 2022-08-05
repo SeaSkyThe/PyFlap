@@ -15,7 +15,6 @@ form#grammarForm {
 div#grammar_rule_list {
     display: block;
     margin-top: 0em;
-    padding-top: 1em;
     text-align: center;
     text-align: -webkit-center;
 }
@@ -25,14 +24,19 @@ div#grammar_rule_list {
     color: white;
     padding: 5 50 5 50;
     text-align: center;
+
 }
 
 /* Labels e Inputs */
-label#grammar_label {
-
+#grammar_label,
+#test_string_label,
+#rules_label {
+    font-weight: 600;
     margin-left: 5px;
     cursor: default;
+    color: #48a87a;
 }
+
 
 /* left half div  */
 
@@ -47,7 +51,8 @@ table#whole_table {
 
 #right-table {
     width: 50%;
-
+    padding-top: 2em;
+    vertical-align: top;
 }
 
 input#rule_left_side,
@@ -66,9 +71,8 @@ input#rule_right_side {
 i#rule_arrow {
     font-size: 1.5em;
     vertical-align: middle;
+    color: black;
 }
-
-
 
 .round {
     border: 1px solid #ccc;
@@ -81,10 +85,7 @@ i#rule_arrow {
 }
 
 
-label#test_string_label {
-    margin-left: 5px;
-    cursor: default;
-}
+
 
 input#grammar_test_string {
     width: 100%;
@@ -98,6 +99,13 @@ input#grammar_test_string {
     margin-top: 1em;
 }
 
+/* RIGHT HALF */
+
+.rule_row {
+    border-bottom: #F8F9FA;
+    border-bottom-width: thin;
+    border-bottom-style: solid;
+}
 
 /* BUTTONS */
 #test_button_div {
@@ -146,7 +154,42 @@ button#add_rule_button {
     color: #444444;
 }
 
+#clear_button_div {
+    margin-top: 1em;
+    padding: 0;
+    border: 1px solid #ccc;
+    border-radius: 3px 3px 3px 3px;
+    display: block;
+    margin-bottom: 2em;
+    width: 100%;
+}
 
+button#clear_button {
+    background: #eaeaea;
+
+    cursor: pointer;
+    border-radius: 3px;
+    background-image: -moz-linear-gradient(#fafafa, #eaeaea);
+    background-image: -webkit-linear-gradient(#fafafa, #eaeaea);
+    background-image: linear-gradient(#fafafa, #eaeaea);
+    background-repeat: repeat-x;
+    width: 100%;
+    color: #444444;
+
+}
+
+.delete_rule_icon {
+    font-size: 22px;
+    vertical-align: middle;
+    color: rgb(223, 53, 69);
+    padding-left: 22%;
+    transition: all 0.12s;
+}
+
+.delete_rule_icon:hover {
+    font-size: 28px;
+    cursor: pointer;
+}
 
 /* CHEATSHEET LINK HOVER */
 .cheatsheet-link {
@@ -156,5 +199,3 @@ button#add_rule_button {
 .cheatsheet-link:hover {
     color: black;
 }
-
-/* PARTE ESQUERDA DA PAGINA */

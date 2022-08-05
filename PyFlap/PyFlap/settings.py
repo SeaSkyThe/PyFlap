@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     #'regularexpressions.apps.RegularexpressionsConfig',
     'regularexpressions',
+    'grammars',
+    
 ]
 
 MIDDLEWARE = [

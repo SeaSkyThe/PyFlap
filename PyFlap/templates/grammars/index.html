@@ -1,6 +1,7 @@
 {% extends 'base.html' %} 
 {% load static %}
 {% block content %}
+{% load custom_tags %}
 <span id="sub-title" >Regular Grammars Validation</span>
 <link rel="stylesheet" href="{% static 'css/grammars/grammars-page.css'%}" />
  
@@ -10,7 +11,7 @@
             <td id="left-table">
                 <table >
                     <tbody>
-                        <form method="post" action="{% url 'grammars_page' %}" id="grammarForm" action="" method="post" class="grammar-form">
+                        <form method="post" action="{% url 'grammars_page' %}" id="grammarForm" action="" class="grammar-form">
                             {% csrf_token %}
                             <tr>  <!-- TEXTO DO INPUT DA REGRA -->
                                 <td>
@@ -65,57 +66,39 @@
                     <table >
                         <tbody>
                             <tr>  <!-- TEXTO TITULO - SUA GRAMATICA -->
-                                <td class="text-center text-primary">
-                                    <p id="grammar_label" for="grammar" >Your Grammar</p>
+                                <td class="text-center">
+                                    <p id="rules_label" for="grammar" >Your Grammar</p>
                                 </td>
                                 
                             </tr> 
                             <!-- REGRAS - CADA REGRA É UMA TABLE ROW -->
-                            <tr>  
-                                <td class="rule">
-                                    S -> A | B | a
-                                </td>
-                            </tr>
-                            <tr >   
-                                <td  class="rule">
-                                    S -> A | B | a
-                                </td>
-                            </tr> 
-                            <tr >   
-                                <td class="rule">
-                                    S -> A | B | a
-                                </td>
-                            </tr> 
-                            <tr >   
-                                <td class="rule">
-                                    S -> A | B | a
-                                </td>
-                            </tr> 
-                            <tr >   
-                                <td class="rule">
-                                    S -> A | B | a
-                                </td>
-                            </tr> 
-                            <tr >   
-                                <td class="rule">
-                                    S -> A | B | a
-                                </td>
-                            </tr> 
-                            <tr >   
-                                <td class="rule">
-                                    S -> A | B | a
-                                </td>
-                            </tr> 
-                            <tr >   
-                                <td class="rule">
-                                    S -> A | B | a
-                                </td>
-                            </tr> 
-                            <tr >   
-                                <td class="rule">
-                                    S -> A | B | a
-                                </td>
-                            </tr> 
+                            {% for rule in rules_objects %}
+                                <tr class="rule_row" >  
+                                    {% if rule.left_side == 'S' %}
+                                        <td class="rule" style="background-color: rgb(68,68,68);">
+                                            <p style="display:inline; ">{{rule.left_side|replaceSeparator}} -> {{rule.right_side|replaceSeparator}}</p>
+                                        </td>
+                                    {% else %}
+                                        <td class="rule">
+                                            <p style="display:inline">{{rule.left_side|replaceSeparator}} -> {{rule.right_side|replaceSeparator}}</p>
+                                        </td>
+                                    {% endif %}
+                                    <td>
+                                        <a href="{% url 'delete_rule' rule.id %}"><i class='bx bx-trash delete_rule_icon'></i></a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            
+                            {% if rules_objects %}
+                                <tr>
+                                    <td colspan="2"> <!-- BOTAO DE CLEAR -->
+                                        <div id="clear_button_div">
+                                            <a href="{% url 'delete_all_rules' %}"><button id="clear_button" type="submit" class="btn">CLEAR</button></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% endif %}
+                            
                         </tbody>
                     </table>
                 </div>
