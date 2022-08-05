@@ -20,7 +20,7 @@ div#grammar_rule_list {
 }
 
 .rule {
-    background-color: #17A2B8;
+    background-color: rgb(68, 68, 68);
     color: white;
     padding: 5 50 5 50;
     text-align: center;
