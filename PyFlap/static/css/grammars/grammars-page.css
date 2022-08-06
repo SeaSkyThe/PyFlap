@@ -28,6 +28,7 @@ div#grammar_rule_list {
 }
 
 /* Labels e Inputs */
+#grammar_initial_symbol_label,
 #grammar_label,
 #test_string_label,
 #rules_label {
@@ -55,6 +56,7 @@ table#whole_table {
     vertical-align: top;
 }
 
+input#grammar_initial,
 input#rule_left_side,
 input#rule_right_side {
     padding: 8px;
@@ -66,6 +68,18 @@ input#rule_right_side {
 
     margin-top: 1em;
     margin-bottom: 1em;
+    color: black;
+}
+
+input#grammar_initial {
+    width: 16%;
+    margin-left: 5%;
+    text-align: center;
+
+}
+
+input#rule_left_side {
+    text-align: right;
 }
 
 i#rule_arrow {

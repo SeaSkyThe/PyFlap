@@ -87,7 +87,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
         }
     });
 
-    console.log("The URL of this page is: " + window.location.href);
+    //console.log("The URL of this page is: " + window.location.href);
 
     // Your code to run since DOM is loaded and ready
 });

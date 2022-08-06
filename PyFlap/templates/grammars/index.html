@@ -11,11 +11,19 @@
             <td id="left-table">
                 <table >
                     <tbody>
-                        <form method="post" action="{% url 'grammars_page' %}" id="grammarForm" action="" class="grammar-form">
+                        <form method="post" action="{% url 'grammars_page' %}" id="grammarForm" class="grammar-form">
                             {% csrf_token %}
+                            <tr>  <!-- TEXTO DO INPUT DO SIMBOLO INICIAL -->
+                                <td>
+                                    <label id="grammar_initial_symbol_label" for="grammarForm">Type your grammar initial symbol: </label>
+                                    {{ grammarform.grammarInitial }}
+                                </td>
+                                
+                            </tr> 
+
                             <tr>  <!-- TEXTO DO INPUT DA REGRA -->
                                 <td>
-                                    <label id="grammar_label" for="grammar">To add a rule to your grammar, type it below: </label>
+                                    <label id="grammar_label" for="grammarForm">To add a rule to your grammar, type it below: </label>
                                 </td>
                                 
                             </tr> 
@@ -67,14 +75,19 @@
                         <tbody>
                             <tr>  <!-- TEXTO TITULO - SUA GRAMATICA -->
                                 <td class="text-center">
+                                    {% if grammar_definition %}
+                                        <p id="rules_label" for="grammar" >Your Grammar: {{grammar_definition}}</p>
+                                    {% else %}
                                     <p id="rules_label" for="grammar" >Your Grammar</p>
+                                    {% endif %}
+                                    
                                 </td>
                                 
                             </tr> 
                             <!-- REGRAS - CADA REGRA É UMA TABLE ROW -->
                             {% for rule in rules_objects %}
                                 <tr class="rule_row" >  
-                                    {% if rule.left_side == 'S' %}
+                                    {% if rule.left_side == grammar.initial %}
                                         <td class="rule" style="background-color: #17A2B8;">
                                             <p style="display:inline; ">{{rule.left_side|replaceSeparator}} -> {{rule.right_side|replaceSeparator}}</p>
                                         </td>
@@ -108,7 +121,7 @@
     </tbody>
 
 </table>
-
+<script src="{% static 'js/grammars/grammars.js' %}" type="text/javascript"></script>
                     
 
 {% endblock %}
