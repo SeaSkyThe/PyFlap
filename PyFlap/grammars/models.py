@@ -56,4 +56,17 @@ class Rule(models.Model):
     def get_all(cls, grammar_pk: int):
         return cls.objects.filter(grammar__pk=grammar_pk)
 
+    @classmethod
+    def create(cls, grammar: Grammar, left_side: str, right_side: str):
+        right_side = right_side.replace(" ", "")
+
+        rule = cls.objects.filter(grammar=grammar, left_side=left_side, right_side=right_side)
+        if(not rule.exists()):
+            rule = cls(grammar=grammar, left_side=left_side, right_side=right_side)
+            rule.save()
+
+        return rule
+
+        
+
 

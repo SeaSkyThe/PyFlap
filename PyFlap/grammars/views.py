@@ -21,10 +21,10 @@ def grammars_page(request):
             grammar.save()
 
             # Agora criando a RULE de acordo com os valores que vieram do FORM (lado esquerdo e lado direito)
-            rule = Rule(grammar=grammar, 
+            Rule.create(grammar=grammar, 
                         left_side=form1['grammarRuleLeft'].value(), 
-                        right_side=form1['grammarRuleRight'].value().replace(" ", ""))
-            rule.save() # Salvando a nova regra da gramática
+                        right_side=form1['grammarRuleRight'].value())
+            
 
             # Atualizando variáveis que serão enviadas para o template (HTML)
             context['grammarform'] = form1 # Form de adicionar rule é enviado com a request
