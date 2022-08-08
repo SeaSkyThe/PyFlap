@@ -69,6 +69,7 @@ input#rule_right_side {
     margin-top: 1em;
     margin-bottom: 1em;
     color: black;
+    width: 46%;
 }
 
 input#grammar_initial {
@@ -86,6 +87,7 @@ i#rule_arrow {
     font-size: 1.5em;
     vertical-align: middle;
     color: black;
+    width: 6%;
 }
 
 .round {
