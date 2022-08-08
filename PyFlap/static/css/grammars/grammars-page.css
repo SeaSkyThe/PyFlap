@@ -17,6 +17,7 @@ div#grammar_rule_list {
     margin-top: 0em;
     text-align: center;
     text-align: -webkit-center;
+    text-align: -moz-center;
 }
 
 .rule {
@@ -38,6 +39,9 @@ div#grammar_rule_list {
     color: #48a87a;
 }
 
+#rules_label {
+    margin-top: 1em;
+}
 
 /* left half div  */
 
