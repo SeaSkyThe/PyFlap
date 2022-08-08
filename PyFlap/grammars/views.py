@@ -44,7 +44,7 @@ def grammars_page(request):
     else: # caso seja uma GET REQUEST (ou seja, chamando a pagina)
         context['grammarform'] = GrammarForm(initial={'grammarInitial': grammar.initial}) # Passando os formularios que serão exibidos
         context['grammartestform'] = GrammarTestForm()
-        context['rules_objects'] = Rule.get_all(grammar.pk) # Enviando todas as regras da gramática para o template
+        context['rules_objects'] = Rule.get_all(grammar.pk).order_by('left_side')# Enviando todas as regras da gramática para o template
         context['grammar_definition'] = grammar.generate_definition()
         context['grammar'] = grammar
 

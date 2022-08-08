@@ -32,6 +32,7 @@
                                     {{ grammarform.grammarRuleLeft }}
                                     <i class='bx bx-right-arrow-alt' id="rule_arrow"></i>
                                     {{ grammarform.grammarRuleRight }}
+                                    <button id="empty_string_rule_button" type="button" class="btn">ε</button>
                                 </td>
                             </tr>
                             <tr>
@@ -85,20 +86,32 @@
                                 
                             </tr> 
                             <!-- REGRAS - CADA REGRA É UMA TABLE ROW -->
+
+                            {% comment %} REGRAS REFERENTES AO SIMBOLO INICIAL {% endcomment %}
                             {% for rule in rules_objects %}
-                                <tr class="rule_row" >  
+                                <tr class="rule_row" > 
                                     {% if rule.left_side == grammar.initial %}
                                         <td class="rule" style="background-color: #17A2B8;">
                                             <p style="display:inline; ">{{rule.left_side|replaceSeparator}} -> {{rule.right_side|replaceSeparator}}</p>
                                         </td>
-                                    {% else %}
+                                        <td>
+                                            <a href="{% url 'delete_rule' rule.id %}"><i class='bx bx-trash delete_rule_icon'></i></a>
+                                        </td>
+                                    {% endif %}
+                                    
+                                </tr>
+                            {% endfor %}
+                            {% comment %} RESTANTE DAS REGRAS, EM ORDEM ALFABETICA (DE ACORDO COM O LADO ESQUERDO) {% endcomment %}
+                            {% for rule in rules_objects %}
+                                <tr class="rule_row" >  
+                                    {% if rule.left_side != grammar.initial %}
                                         <td class="rule">
                                             <p style="display:inline">{{rule.left_side|replaceSeparator}} -> {{rule.right_side|replaceSeparator}}</p>
                                         </td>
+                                        <td>
+                                            <a href="{% url 'delete_rule' rule.id %}"><i class='bx bx-trash delete_rule_icon'></i></a>
+                                        </td>                      
                                     {% endif %}
-                                    <td>
-                                        <a href="{% url 'delete_rule' rule.id %}"><i class='bx bx-trash delete_rule_icon'></i></a>
-                                    </td>
                                 </tr>
                             {% endfor %}
                             

@@ -37,8 +37,12 @@ class Grammar(SingletonModel): # GRAMATICA SÓ EXISTE 1
                 for symbol in list(part):
                     if symbol.islower() and not symbol in terminals:
                         terminals.append(symbol)
-            
-        definition = f"G = ({{{', '.join(non_terminals)}}}, {{{', '.join(terminals)}}}, P, {self.initial})"
+        
+        non_terminals.remove(self.initial) # removendo o simbolo inicial para ordernar a lista e manter ele em primeiro
+        non_terminals.sort()
+        terminals.sort()
+
+        definition = f"G = ({{{self.initial}, {', '.join(non_terminals)}}}, {{{', '.join(terminals)}}}, P, {self.initial})"
 
         return definition
     

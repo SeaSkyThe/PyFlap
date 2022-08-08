@@ -73,7 +73,7 @@ input#rule_right_side {
     margin-top: 1em;
     margin-bottom: 1em;
     color: black;
-    width: 46%;
+    width: 43%;
 }
 
 input#grammar_initial {
@@ -128,6 +128,31 @@ input#grammar_test_string {
 }
 
 /* BUTTONS */
+button#empty_string_rule_button {
+    text-align: center;
+    width: 5%;
+    background: #eaeaea;
+
+    height: auto;
+    padding: 0;
+    border: 1px solid #ccc;
+    border-radius: 3px 3px 3px 3px;
+    display: inline;
+
+
+    cursor: pointer;
+    border-radius: 3px;
+    background-image: -moz-linear-gradient(#fafafa, #eaeaea);
+    background-image: -webkit-linear-gradient(#fafafa, #eaeaea);
+    background-image: linear-gradient(#fafafa, #eaeaea);
+    background-repeat: repeat-x;
+    color: #444444;
+}
+
+button#empty_string_rule_button:hover {
+    border-color: black;
+}
+
 #test_button_div {
     margin-top: 1em;
     padding: 0;

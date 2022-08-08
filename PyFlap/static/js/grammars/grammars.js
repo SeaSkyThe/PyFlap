@@ -49,7 +49,7 @@ grammar_left_side_input.addEventListener("input", function (event) {
 
 // INPUT DO LADO DIREITO DA REGRA
 grammar_right_side_input.addEventListener("input", function (event) {
-    if (matchPattern(this.value)) { // Se for uma letra ou "|" ou " "
+    if (matchPattern(this.value) || this.value === "ε") { // Se for uma letra ou "|" ou " " ou ε
 
         this.style.borderColor = 'green';
     }
@@ -70,7 +70,7 @@ function matchPattern(string) {
     if (typeof string !== 'string') {
         return false
     }
-    return /^[a-zA-Z| ]+$/.test(string)
+    return /^[a-zA-Z|ε ]+$/.test(string)
 }
 function isLetter(character) {
     if (typeof character !== 'string') {
@@ -85,3 +85,12 @@ function everyOneIsLetter() {
     }
     return false
 }
+
+
+// EVENT LISTENER BOTAO DE CADEIA VAZIA
+const empty_button = document.getElementById("empty_string_rule_button")
+
+empty_button.addEventListener("click", function (event) {
+    grammar_right_side_input.value = grammar_right_side_input.value + 'ε';
+    grammar_right_side_input.dispatchEvent(new Event("input"));
+});
