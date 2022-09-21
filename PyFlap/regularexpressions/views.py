@@ -1,4 +1,5 @@
 from django.shortcuts import render, HttpResponse
+from django.http import JsonResponse
 import re
 
 from .forms import RegexForm
@@ -8,7 +9,6 @@ def regex_page(request):
 
     }
     if request.method == 'POST':
-
         form = RegexForm(request.POST)
         context['regexform'] = form
         if(form.is_valid()):
@@ -26,7 +26,6 @@ def regex_page(request):
 
     else:
         context['regexform'] = RegexForm()
-    
     return render(request, 'regularexpressions/index.html', context=context)
 
 
