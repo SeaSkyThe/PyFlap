@@ -1,5 +1,5 @@
 # PyFlap
-## Regex, Finite Automatas and Regulars Grammars Validator.
+## Regex, Finite Automatas and Regular Grammars Validator.
 
 1. Create your virtual enviroment and install requirements.txt
 2. Enter into your virtual enviroment
