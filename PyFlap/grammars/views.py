@@ -11,6 +11,9 @@ def grammars_page(request):
         
     }
     grammar = Grammar.load()
+    context['rules_objects'] = Rule.get_all(grammar.pk).order_by('left_side')# Enviando todas as regras da gramática para o template
+    context['grammar_definition'] = grammar.generate_definition()
+    context['grammar'] = grammar
     if request.method == "POST":
         form1 = GrammarForm(request.POST)
         form2 = GrammarTestForm(request.POST)
@@ -33,9 +36,11 @@ def grammars_page(request):
             
         elif(form2.is_valid()): # SE FOR O FORM DE TESTAR A GRAMATICA
             context['grammartestform'] = form2
-            context['grammarform'] = GrammarForm()
-            grammar.test_sentence(sentence=form2['testString'].value(), index=None, currentNonTerminal='') # Funcao que verifica a validade da sentença de acordo com a gramatica existente
-
+            context['grammarform'] = GrammarForm(initial={'grammarInitial': grammar.initial})
+            sentence_test = grammar.test_sentence(sentence=form2['testString'].value(), index=None, currentNonTerminal='') # Funcao que verifica a validade da sentença de acordo com a gramatica existente
+            context['sentence_test'] = sentence_test
+            return render(request, 'grammars/index.html', context=context) # renderiza com as variáveis setadas
+        
         else:
             print(f'\n\nNENHUM FORM VALIDO: {form1.is_valid()}\n\n')
 
@@ -44,9 +49,7 @@ def grammars_page(request):
     else: # caso seja uma GET REQUEST (ou seja, chamando a pagina)
         context['grammarform'] = GrammarForm(initial={'grammarInitial': grammar.initial}) # Passando os formularios que serão exibidos
         context['grammartestform'] = GrammarTestForm()
-        context['rules_objects'] = Rule.get_all(grammar.pk).order_by('left_side')# Enviando todas as regras da gramática para o template
-        context['grammar_definition'] = grammar.generate_definition()
-        context['grammar'] = grammar
+
 
     return render(request, 'grammars/index.html', context=context) # renderiza com as variáveis setadas
     

@@ -52,7 +52,7 @@ class Grammar(SingletonModel): # GRAMATICA SÓ EXISTE 1
             return True
         else:
             return False
-
+    
     def test_sentence(self, sentence: str, index: int, currentNonTerminal: str) -> bool: # Funcao que testa uma sentença de acordo com a gramatica
         if(not currentNonTerminal): #Se não foi passado nenhum não terminal - é a primeira iteracao
             currentNonTerminal = self.initial # Definimos o primeiro não terminal, como o simbolo inicial da gramatica
@@ -70,8 +70,8 @@ class Grammar(SingletonModel): # GRAMATICA SÓ EXISTE 1
         done = False
         
         # Verificando qual regra deriva o não terminal
-        for rule in Rule.get_all(self.pk):
-            if(rule.left_side != currentNonTerminal): # Se a regra do lado esquerdo, for igual ao não terminal atual
+        for rule in Rule.get_all(self.pk): # pega todas as regras da gramatica com chave pk
+            if(rule.left_side != currentNonTerminal): # Se a regra do lado esquerdo, for diferente ao não terminal atual
                 continue
             
             print(f"Rule for NonTerminal: '{currentNonTerminal}' found. Derivating...")
@@ -83,6 +83,8 @@ class Grammar(SingletonModel): # GRAMATICA SÓ EXISTE 1
                         done = self.test_sentence(sentence, currentIndex, symbol)
                         if(done):
                             return True
+                        else:
+                            currentIndex = currentIndex + 1
                     elif(symbol == sentence[currentIndex]): # Se for terminal
                         print(f"Symbol '{symbol}' found in '{derivation}' of '{rule.left_side}' | Sentence = '{sentence}' CurrentIndex = '{currentIndex}' Symbol = '{currentNonTerminal}'")
                         currentIndex = currentIndex + 1
@@ -104,7 +106,7 @@ class Grammar(SingletonModel): # GRAMATICA SÓ EXISTE 1
                         done = False
                         break
          
-        print(f"\nRecursion finished: Sentence = '{sentence}' CurrentIndex = '{currentIndex}' Symbol = '{currentNonTerminal}' | Result = {done} ")
+        print(f"\nRecursion finished: Sentence = '{sentence}' CurrentIndex = '{currentIndex}' Symbol = '{currentNonTerminal}' | Result = {done}\n")
         return done
 
 class Rule(models.Model):

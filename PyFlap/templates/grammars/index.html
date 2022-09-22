@@ -54,6 +54,19 @@
                             <tr><!-- INPUT DA STRING DE TESTE -->
                                 <td colspan="2">
                                     {{ grammartestform.testString }}
+                                    {% if sentence_test %}
+                                        <script>
+                                            var grammar_test_string = document.getElementById('grammar_test_string');
+                                            grammar_test_string.style.borderColor = 'green';
+                                            grammar_test_string.style.color = 'green';
+                                        </script>
+                                    {% else %}
+                                        <script>
+                                            var grammar_test_string = document.getElementById('grammar_test_string');
+                                            grammar_test_string.style.borderColor = 'red';
+                                            grammar_test_string.style.color = 'red';
+                                        </script>
+                                    {% endif %}
                                 </td>
                             </tr>
 
