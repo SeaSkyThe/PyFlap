@@ -11,7 +11,8 @@ def grammars_page(request):
         
     }
     grammar = Grammar.load()
-    context['rules_objects'] = Rule.get_all(grammar.pk).order_by('left_side')# Enviando todas as regras da gramática para o template
+    rules = Rule.get_all(grammar.pk).order_by('left_side')
+    context['rules_objects'] = rules# Enviando todas as regras da gramática para o template
     context['grammar_definition'] = grammar.generate_definition()
     context['grammar'] = grammar
     if request.method == "POST":
@@ -19,16 +20,19 @@ def grammars_page(request):
         form2 = GrammarTestForm(request.POST)
         
         if(form1.is_valid()): # SE FOR O FORM DE ADICIONAR REGRA NA GRAMATICA
-            # Setando o inicial
-            grammar.initial = form1['grammarInitial'].value()
-            grammar.save()
-
-            # Agora criando a RULE de acordo com os valores que vieram do FORM (lado esquerdo e lado direito)
+            # Criando a RULE de acordo com os valores que vieram do FORM (lado esquerdo e lado direito)
             Rule.create(grammar=grammar, 
                         left_side=form1['grammarRuleLeft'].value(), 
                         right_side=form1['grammarRuleRight'].value())
             
-
+            # Setando o inicial, se existir uma regra que deriva esse simbolo
+            new_initial = form1['grammarInitial'].value()
+            for rule in rules:
+                if(rule.left_side == new_initial):
+                    grammar.initial = new_initial
+                    grammar.save()
+                    break
+            
             # Atualizando variáveis que serão enviadas para o template (HTML)
             context['grammarform'] = form1 # Form de adicionar rule é enviado com a request
             context['grammartestform'] = GrammarTestForm() # Form de testar gramatica é enviado vazio

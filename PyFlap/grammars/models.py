@@ -53,28 +53,37 @@ class Grammar(SingletonModel): # GRAMATICA SÓ EXISTE 1
         else:
             return False
     
-    def test_sentence(self, sentence: str, index: int, currentNonTerminal: str) -> bool: # Funcao que testa uma sentença de acordo com a gramatica
-        if(not currentNonTerminal): #Se não foi passado nenhum não terminal - é a primeira iteracao
-            currentNonTerminal = self.initial # Definimos o primeiro não terminal, como o simbolo inicial da gramatica
-        if(not index): # Se não tem index definido (posição na sentença analizada)
+    # Funcao que testa uma sentença de acordo com a gramatica
+    # Essa função é recursiva, recebe a sentença, o index atual do caracter a ser verificado pela função e o não terminal atual que está sendo derivado.
+    def test_sentence(self, sentence: str, index: int, currentNonTerminal: str) -> bool:
+        #Se não foi passado nenhum não terminal - é a primeira iteracao
+        if(not currentNonTerminal): 
+            currentNonTerminal = self.initial # Se nenhum 'não terminal' foi passado, devemos iniciar pelo simbolo inicial da função.
+        
+        # Se não tem index definido (posição na sentença analizada), começamos pelo primeiro caracter
+        if(not index): 
             index = 0 # definimos como 0
         
+        # Se de alguma forma o index for maior que o tamanho da sentença, ocorreu algo errado.
         if(index > len(sentence)):
             print('Problem with the solution. End of sentence.')
             return False
         
+        
+        # Iniciando teste
         print('\n\nStarting test: ')
 
         print(f"Testing char '{sentence[index]}' ({index}) from sentence '{sentence}'")
 
         done = False
+        currentIndex = index 
         
-        # Verificando qual regra deriva o não terminal
-        for rule in Rule.get_all(self.pk): # pega todas as regras da gramatica com chave pk
+        # Verificando qual regra deriva o não terminal atual.
+        for rule in Rule.get_all(self.pk): # Pega todas as regras da gramatica e verifica qual delas deriva o não terminal atual.
             if(rule.left_side != currentNonTerminal): # Se a regra do lado esquerdo, for diferente ao não terminal atual
                 continue
             
-            print(f"Rule for NonTerminal: '{currentNonTerminal}' found. Derivating...")
+            print(f"Rule for NonTerminal: '{currentNonTerminal}' found. Derivating by the rule: {rule.left_side} -> {rule.right_side}...")
             for derivation in rule.right_side.split('|'): # Para cada derivação existente no lado direito
                 currentIndex = index 
                 for symbol in derivation: # Para cada simbolo na derivação
@@ -107,6 +116,7 @@ class Grammar(SingletonModel): # GRAMATICA SÓ EXISTE 1
                         break
          
         print(f"\nRecursion finished: Sentence = '{sentence}' CurrentIndex = '{currentIndex}' Symbol = '{currentNonTerminal}' | Result = {done}\n")
+        print(f"------------------------------------------------------------------------------------------------------------------------------\n")
         return done
 
 class Rule(models.Model):
