@@ -37,5 +37,5 @@ class GrammarForm(forms.Form):
         return self.cleaned_data
 
 class GrammarTestForm(forms.Form):
-    testString = forms.CharField(label='Test String', max_length=1000)
-    testString.widget = forms.TextInput(attrs={'title':'test_string', 'placeholder': 'abb', 'class': 'round', 'id': 'grammar_test_string',})
+    testString = forms.CharField(label='Test String', max_length=1000, empty_value=' ', required=False)
+    testString.widget = forms.TextInput(attrs={'title':'test_string', 'class': 'round', 'id': 'grammar_test_string',})

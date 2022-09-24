@@ -94,3 +94,19 @@ empty_button.addEventListener("click", function (event) {
     grammar_right_side_input.value = grammar_right_side_input.value + 'ε';
     grammar_right_side_input.dispatchEvent(new Event("input"));
 });
+
+
+// TEST STRING INPUT
+const testStringInput = document.getElementById('grammar_test_string');
+const testButton = document.getElementById('test_button');
+testStringInput.addEventListener('input', function (event) {
+    testButton.disabled = false
+    if (isLetter(this.value.slice(-1))) { // Se for uma letra
+        this.value = this.value.toLowerCase(); // GARANTE QUE SEJA UPPERCASE
+        text = this.value;
+    }
+    else {
+        //testButton.disabled = true
+        this.value = this.value.slice(0, -1)
+    }
+});

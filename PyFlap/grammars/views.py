@@ -2,7 +2,7 @@ from turtle import right
 from django.shortcuts import redirect, render
 from django.urls import reverse
 from .forms import GrammarForm, GrammarTestForm
-from .models import Grammar, Rule
+from .models import Grammar, Rule, create_tree_with_grammar
 from django.http import HttpResponse, HttpResponseRedirect
 
 # Create your views here.
@@ -39,6 +39,7 @@ def grammars_page(request):
             
             
         elif(form2.is_valid()): # SE FOR O FORM DE TESTAR A GRAMATICA
+            #create_tree_with_grammar()
             context['grammartestform'] = form2
             context['grammarform'] = GrammarForm(initial={'grammarInitial': grammar.initial})
             sentence_test = grammar.test_sentence(sentence=form2['testString'].value(), index=None, currentNonTerminal='') # Funcao que verifica a validade da sentença de acordo com a gramatica existente
@@ -52,7 +53,7 @@ def grammars_page(request):
 
     else: # caso seja uma GET REQUEST (ou seja, chamando a pagina)
         context['grammarform'] = GrammarForm(initial={'grammarInitial': grammar.initial}) # Passando os formularios que serão exibidos
-        context['grammartestform'] = GrammarTestForm()
+        context['grammartestform'] = GrammarTestForm(initial={'testString': ''})
 
 
     return render(request, 'grammars/index.html', context=context) # renderiza com as variáveis setadas
