@@ -1,4 +1,3 @@
-from turtle import right
 from django.shortcuts import redirect, render
 from django.urls import reverse
 from .forms import GrammarForm, GrammarTestForm
