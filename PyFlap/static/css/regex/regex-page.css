@@ -53,7 +53,8 @@ label#test_string_label {
     cursor: default;
 }
 
-input#test_string {
+input#test_string,
+input#test_string2 {
     width: 100%;
 
     margin-bottom: 20px;

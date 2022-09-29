@@ -29,12 +29,23 @@
                             </tr>
                             <tr><!-- TEXTO DO INPUT DA STRING DE TESTE -->
                                 <td colspan="2">
-                                    <label id="test_string_label" for="test_string">Your test string:</label>
+                                    <label id="test_string_label" for="test_string">Test string 1:</label>
                                 </td>
                             </tr>
                             <tr><!-- INPUT DA STRING DE TESTE -->
                                 <td colspan="2">
                                     {{regexform.teststring}}
+                                </td>
+                            </tr>
+
+                            <tr><!-- TEXTO DO INPUT DA STRING DE TESTE -->
+                                <td colspan="2">
+                                    <label id="test_string_label" for="test_string">Test string 2:</label>
+                                </td>
+                            </tr>
+                            <tr><!-- INPUT DA STRING DE TESTE -->
+                                <td colspan="2">
+                                    {{regexform.teststring2}}
                                 </td>
                             </tr>
 
@@ -44,21 +55,21 @@
                                         <button id="test_button" type="submit" class="btn">TEST</button>
                                     </div>
                                     {% if invalid_regex %}
-                                        <p style="color: red;">INVALID REGEX SENTENCE: {{error_message}}</p>
+                                        <!-- <p style="color: red;">INVALID REGEX SENTENCE: {{error_message}}</p> -->
                                         <script>
                                             var test_string_input = document.getElementById('regex');
                                             test_string_input.style.color = 'red';
                                             test_string_input.style.borderColor = 'red';
                                         </script>
                                     {% elif string_validation %}
-                                        <p style="color: green;">VALID</p>
+                                       <!--  <p style="color: green;">VALID</p>-->
                                         <script>
                                             var test_string_input = document.getElementById('test_string');
                                             test_string_input.style.color = 'green';
                                             test_string_input.style.borderColor = 'green';
                                         </script>
                                     {% elif string_validation == False %}
-                                        <p style="color: red;">INVALID</p>
+                                        <!--<p style="color: red;">INVALID</p>-->
                                         <script>
                                             var test_string_input = document.getElementById('test_string');
                                             test_string_input.style.color = 'red';
@@ -92,7 +103,7 @@
 
     </table>
 </form>
-<script src="{% static 'js/grammars/grammars.js' %}" type="text/javascript"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="{% static 'js/regularexpressions/regex.js' %}" type="text/javascript"></script>
 {% endblock %}
 
