@@ -49,7 +49,7 @@ grammar_left_side_input.addEventListener("input", function (event) {
 
 // INPUT DO LADO DIREITO DA REGRA
 grammar_right_side_input.addEventListener("input", function (event) {
-    if (matchPattern(this.value) || this.value === "ε") { // Se for uma letra ou "|" ou " " ou ε
+    if (matchPattern(this.value) || this.value === "ε") { // Se for uma letra ou "|" ou " " ou ε ou numeros
 
         this.style.borderColor = 'green';
     }
@@ -70,7 +70,7 @@ function matchPattern(string) {
     if (typeof string !== 'string') {
         return false
     }
-    return /^[a-zA-Z|ε ]+$/.test(string)
+    return /^[a-zA-Z0-9]+$/.test(string)
 }
 function isLetter(character) {
     if (typeof character !== 'string') {
@@ -101,8 +101,8 @@ const testStringInput = document.getElementById('grammar_test_string');
 const testButton = document.getElementById('test_button');
 testStringInput.addEventListener('input', function (event) {
     testButton.disabled = false
-    if (isLetter(this.value.slice(-1))) { // Se for uma letra
-        this.value = this.value.toLowerCase(); // GARANTE QUE SEJA UPPERCASE
+    if (matchPattern(this.value.slice(-1))) { // Se for uma letra ou numero
+        this.value = this.value.toLowerCase(); // GARANTE QUE SEJA LOWERCASE
         text = this.value;
     }
     else {
