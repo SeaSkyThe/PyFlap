@@ -70,7 +70,7 @@ function matchPattern(string) {
     if (typeof string !== 'string') {
         return false
     }
-    return /^[a-zA-Z0-9]+$/.test(string)
+    return /^[a-zA-Z0-9|ε ]+$/.test(string)
 }
 function isLetter(character) {
     if (typeof character !== 'string') {
