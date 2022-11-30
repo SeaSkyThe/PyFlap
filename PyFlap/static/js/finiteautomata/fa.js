@@ -37,7 +37,24 @@ var cy = cytoscape({
                 'target-arrow-shape': 'triangle',
                 'curve-style': 'bezier'
             }
+        },
+        {
+            selector: '.eh-preview, .eh-ghost-edge',
+            style: {
+                'background-color': 'red',
+                'line-color': 'red',
+                'target-arrow-color': 'red',
+                'source-arrow-color': 'red'
+            }
+        },
+
+        {
+            selector: '.eh-ghost-edge.eh-preview-active',
+            style: {
+                'opacity': 0
+            }
         }
+
     ],
     layout: {
         name: 'grid',
@@ -87,7 +104,6 @@ function button_add_handler() {
     cy.removeListener('tap', button_remove_handler);
     cy.on('tap', function (evt) {
         var tgt = evt.target || evt.cyTarget; // 3.x || 2.x
-
         if (tgt === cy) {
             cy.add({
                 classes: 'automove-viewport',
@@ -117,12 +133,6 @@ function button_remove_handler() {
 }
 document.getElementById('button-add').addEventListener('click', button_add_handler);
 document.getElementById('button-remove').addEventListener('click', button_remove_handler);
-
-
-// Uses the extension: cytoscape-automove
-function add_node() {
-    return
-}
 
 
 
