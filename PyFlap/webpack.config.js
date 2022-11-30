@@ -6,4 +6,7 @@ module.exports = {
         filename: 'index.js',
         path: path.resolve('./static/js/', 'finiteautomata'),
     },
+    experiments: {
+        topLevelAwait: true
+    },
 };
