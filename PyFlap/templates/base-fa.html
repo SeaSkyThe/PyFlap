@@ -1,0 +1,17 @@
+{% extends 'sidebar.html' %}
+
+{% block page %}
+    <div id="main">
+        <div id="header">
+            <a href="{% url 'homepage' %}">
+                <span id="title">PyFlap</span> 
+            </a>
+           
+        </div>
+        
+        <div class="content-page-fa">
+            
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+{% endblock %}

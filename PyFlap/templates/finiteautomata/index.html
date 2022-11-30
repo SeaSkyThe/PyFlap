@@ -1,0 +1,15 @@
+{% extends 'base-fa.html' %} 
+{% load static %}
+{% block content %}
+{% load custom_tags %}
+
+    <div id="sub-title-div"><span id="sub-title" >Finite Automata Simulation</span></div>
+    <link rel="stylesheet" href="{% static 'css/finiteautomata/fa-page.css'%}" />
+
+    
+    <div id="cy">
+
+    </div>
+
+    <script src="{% static 'js/finiteautomata/index.js' %}" type="text/javascript"></script>
+{% endblock %}

@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     #'regularexpressions.apps.RegularexpressionsConfig',
     'regularexpressions',
     'grammars',
+    'finiteautomata',
     
 ]
 

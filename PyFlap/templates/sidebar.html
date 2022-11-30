@@ -21,6 +21,7 @@
         />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/boxicons/2.1.0/css/boxicons.min.css" integrity="sha512-pVCM5+SN2+qwj36KonHToF2p1oIvoU3bsqxphdOIWMYmgr4ZqD3t5DjKvvetKhXGc/ZG5REYTT6ltKfExEei/Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <link rel="stylesheet" href="{% static 'css/base.css'%}" />
+        <link rel="stylesheet" href="{% static 'css/base-fa.css'%}" />
         <link rel="stylesheet" href="{% static 'css/sidebar.css'%}" />
     </head>
     <body>
@@ -38,7 +39,7 @@
                             <a href="#" class="nav_link"> <i class='bx bx-user nav_icon'></i> <span class='nav_name'>Participants</span> </a> 
                             <a href="{% url 'regex_page' %}" class="nav_link"> <i class='bx bx-message-square-detail nav_icon'></i> <span class='nav_name'>Regex Validator</span> </a> 
                             <a href="{% url 'grammars_page' %}" class="nav_link"> <i class='bx bx-paragraph nav_icon'></i> <span class='nav_name'>Regular Grammars</span> </a> 
-                            <a href="#" class="nav_link"> <i class='bx bx-food-tag nav_icon'></i> <span class='nav_name'>Finite Automata</span> </a> 
+                            <a href="{% url 'fa_page' %}" class="nav_link"> <i class='bx bx-food-tag nav_icon'></i> <span class='nav_name'>Finite Automata</span> </a> 
                             
                         </div>
                    </div> 
