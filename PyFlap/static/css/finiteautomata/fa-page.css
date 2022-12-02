@@ -10,6 +10,28 @@
 
 .content-page-fa {}
 
+#buttons-div {
+    padding-bottom: 1%;
+}
+
+
+.button-selected {
+    background-color: #17A2B8;
+}
+
+#button-cursor,
+#button-add,
+#button-remove,
+#button-edge {}
+
+#button-cursor:hover,
+#button-add:hover,
+#button-remove:hover,
+#button-edge:hover {
+    background-color: #17A2B8;
+    transition: all ease 0.2s;
+}
+
 #cy {
     border: 2px solid #17A2B8;
     height: 80%;

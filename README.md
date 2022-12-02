@@ -8,7 +8,7 @@
 3. Go to the second Pyflap folder (where manage.py is) and run `python manage.py runserver` to run the app.
 
 
-## It is necessary to setup npm too.
+## It is necessary to setup the frontend with npm too.
 1. Install your npm
 2. Go to the same folder as `package.json`
 3. Run `npm install` then `npm run build`
