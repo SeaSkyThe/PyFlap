@@ -12,8 +12,12 @@
 
 #buttons-div {
     padding-bottom: 1%;
+    display: flex;
 }
 
+#left-buttons {
+    flex: 1;
+}
 
 .button-selected {
     background-color: #17A2B8;
@@ -22,12 +26,16 @@
 #button-cursor,
 #button-add,
 #button-remove,
-#button-edge {}
+#button-edge,
+#button-mark-initial,
+#button-mark-final {}
 
 #button-cursor:hover,
 #button-add:hover,
 #button-remove:hover,
-#button-edge:hover {
+#button-edge:hover,
+#button-mark-initial:hover,
+#button-mark-final:hover {
     background-color: #17A2B8;
     transition: all ease 0.2s;
 }

@@ -17,6 +17,10 @@ let fa = []
 var q_counter = 0;
 var q_numbers_left = [];
 
+var color_initial = "#90EE90"
+var color_common = '#FFF'
+var final_shape = 'diamond'
+
 var cy = cytoscape({
     container: document.getElementById('cy'), // container to render in
     elements: [
@@ -26,7 +30,8 @@ var cy = cytoscape({
         {
             selector: 'node',
             style: {
-                'background-color': '#FFF',
+                'is_initial': 'data(is_initial)',
+                'background-color': color_common,
                 'border-color': '#000',
                 'border-width': 1,
                 'label': 'data(id)',
@@ -34,6 +39,7 @@ var cy = cytoscape({
                 'text-halign': 'center',
                 'width': '2.5em',
                 'height': '2.5em',
+                'shape': 'ellipse',
             }
         },
         {
@@ -81,7 +87,6 @@ var cy = cytoscape({
     wheelSensitivity: 0.3,
 
 });
-
 // =========================================================== CREATE EDGES BETWEEN NODES IN FINITE AUTOMATA ==========================================================
 
 var eh = cy.edgehandles({
@@ -157,7 +162,7 @@ function btn_add_cy_handler(evt) {
 // Função que vai como handler do botao de add
 function button_add_handler() {
     eh.disableDrawMode();
-    cy.removeListener('tap', btn_remove_cy_handler);
+    cy.removeListener('tap');
 
     cy.on('tap', btn_add_cy_handler);
     this.classList.add('button-selected');
@@ -177,7 +182,7 @@ function btn_remove_cy_handler(evt) {
 // Função que vai como handler do botao de remove
 function button_remove_handler() {
     eh.disableDrawMode();
-    cy.removeListener('tap', btn_add_cy_handler);
+    cy.removeListener('tap');
 
     cy.on('tap', 'node', btn_remove_cy_handler);
     cy.on('tap', 'edge', btn_remove_cy_handler);
@@ -191,16 +196,84 @@ document.getElementById('button-remove').addEventListener('click', button_remove
 
 
 function remove_selected_from_buttons(except) {
-    let button_list = document.getElementById("buttons-div").children
+    let button_divs = document.getElementById("buttons-div").children
 
-    for (let button of button_list) {
-        if (button.id.toLocaleLowerCase() !== except.toLocaleLowerCase()) {
-            button.classList.remove('button-selected');
+    for (let button_div of button_divs) {
+        for (let button of button_div.children) {
+            if (button.id.toLocaleLowerCase() !== except.toLocaleLowerCase()) {
+                button.classList.remove('button-selected');
+            }
+        }
+
+    }
+}
+
+
+// =========================================================== MARK NODES AS INITIAL AND FINAL ==========================================================
+
+function button_mark_initial_handler() {
+    eh.disableDrawMode();
+    cy.removeListener('tap');
+    cy.removeListener('cxttap');
+
+    cy.on('tap', 'node', btn_mark_initial_cy_handler);
+
+    this.classList.add('button-selected');
+    remove_selected_from_buttons(this.id);
+}
+
+function btn_mark_initial_cy_handler(evt) {
+    var node = evt.target;
+
+    disable_current_initial();
+
+    //Initial changes color
+    node.style('background-color', color_initial);
+    node.data('is_initial', true);
+}
+
+function disable_current_initial() {
+    for (let i = 0; i < cy.nodes().length; i++) {
+        if (cy.nodes()[i].data()['is_initial']) {
+            cy.nodes()[i].data('is_initial', false);
+            cy.nodes()[i].style('background-color', color_common);
         }
     }
 }
 
 
+document.getElementById('button-mark-initial').addEventListener('click', button_mark_initial_handler);
+
+// HANDLING FINALS
+function button_mark_unmark_final_handler() {
+    eh.disableDrawMode();
+    cy.removeListener('tap');
+
+    cy.on('tap', 'node', btn_mark_final_cy_handler);
+    cy.on('cxttap', 'node', btn_unmark_final_cy_handler);
+
+    this.classList.add('button-selected');
+    remove_selected_from_buttons(this.id);
+}
+
+function btn_mark_final_cy_handler(evt) {
+    var node = evt.target;
+
+    node.style('shape', final_shape);
+
+    node.data('is_final', true);
+
+}
+
+function btn_unmark_final_cy_handler(evt) {
+    var node = evt.target;
+
+    node.style('shape', "ellipse");
+    node.data('is_final', false);
+
+}
+
+document.getElementById('button-mark-final').addEventListener('click', button_mark_unmark_final_handler);
 // 1. Adicionar e remover nós --- DONE
 //    1.1 Nós são nomeados de q0...qn --- DONE
 // 2. Ligar nós por setas - edges (arrasta de um nó para outro) --- DONE

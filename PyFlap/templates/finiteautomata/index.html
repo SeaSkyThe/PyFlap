@@ -7,10 +7,19 @@
     <link rel="stylesheet" href="{% static 'css/finiteautomata/fa-page.css'%}" />
 
     <div id="buttons-div">
-        <button id="button-cursor"><img src="https://img.icons8.com/ios-glyphs/30/null/cursor--v1.png"/></button> <!-- Cursor normal -->
-        <button id="button-add"><img src="https://img.icons8.com/ios-glyphs/30/null/plus-math.png"/></button> <!-- ADD node -->
-        <button id="button-remove"><img src="https://img.icons8.com/material-two-tone/30/null/delete-sign.png"/></button> <!-- REMOVE node -->
-        <button id="button-edge"><img style="transform: rotate(90deg);-moz-transform: rotate(90deg); -ms-transform: rotate(90deg);-webkit-transform: rotate(90deg); " src="https://img.icons8.com/ios-filled/30/null/long-arrow-up.png" /></button> <!-- EDGE -->
+        <div id="left-buttons">
+            <button id="button-cursor" title="Move"><img src="https://img.icons8.com/ios-glyphs/30/null/cursor--v1.png"/></button> <!-- Cursor normal -->
+            <button id="button-add" title="Add new state"><img src="https://img.icons8.com/ios-glyphs/30/null/plus-math.png"/></button> <!-- ADD node -->
+            <button id="button-remove" title="Remove something"><img src="https://img.icons8.com/material-two-tone/30/null/delete-sign.png"/></button> <!-- REMOVE node -->
+            <button id="button-edge" title="Add new transition"><img style="transform: rotate(90deg);-moz-transform: rotate(90deg); -ms-transform: rotate(90deg);-webkit-transform: rotate(90deg); " src="https://img.icons8.com/ios-filled/30/null/long-arrow-up.png" /></button> <!-- EDGE -->
+        </div>
+        <div id="right-buttons">
+            <button id="button-mark-initial" title="Mark state as initial"><img src="https://img.icons8.com/ios-filled/30/null/initial-state.png"/></button> <!-- initial -->
+            <button id="button-mark-final" title="Mark state as final"><img src="https://img.icons8.com/material-sharp/30/null/final-state.png"/></button> <!-- final -->
+        </div>
+        
+
+        
     </div>
     <div id="cy">
         
