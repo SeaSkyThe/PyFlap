@@ -15,27 +15,30 @@ def fa_page(request):
 #         sentence = '1010'
 
         #print(json.loads(request.body)['finite_automata'])
+        error_message = 'Verifique se seu autômato está completo (estado inicial e final marcados) e se a sentença testada tem caracteres válidos.'
+        
         try:
             fa = FiniteAutomata(json.loads(request.body)['finite_automata'])
             sentence = json.loads(request.body)['sentence']
         except:
-            return JsonResponse({'sentence_accepted': 'error', 'message': 'Verifique se seu autômato está completo e se a sentença testada tem caracteres válidos.'})
+            return JsonResponse({'sentence_accepted': 'error', 'message': error_message})
         if(not sentence):
             sentence=''
         
         try:
             regex = fa.convert_fa_to_regex()
         except:
-            return JsonResponse({'sentence_accepted': 'error', 'message': 'Verifique se seu autômato está completo e se a sentença testada tem caracteres válidos.'})
+            return JsonResponse({'sentence_accepted': 'error', 'message': error_message})
         raw_regex = r'{}'.format(regex)
         
         print("\n", raw_regex, "\n")
         matcha = re.fullmatch(raw_regex, sentence)
+        #print('\n matcha ', matcha, "\n")
         if(matcha and matcha.group()):
             #return HttpResponse({'sentence_accepted': False})
-            return JsonResponse({'sentence_accepted': 'true'})
+            return JsonResponse({'sentence_accepted': 'true', 'regex':regex})  
         else:
-            return JsonResponse({'sentence_accepted': 'false'})
+            return JsonResponse({'sentence_accepted': 'false', 'regex':regex})
         
         
     if(request.method == 'GET'):

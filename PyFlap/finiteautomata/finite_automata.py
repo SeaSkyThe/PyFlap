@@ -13,6 +13,10 @@ class FiniteAutomata:
         for edge in finite_automata["edges"]:
             filtered_fa["edges"].append(edge['data'])
 
+        for edge in filtered_fa['edges']:
+            if(edge['label'] == None):
+                filtered_fa['edges'][filtered_fa['edges'].index(edge)] = {'source': edge['source'], 'target': edge['target'], 'label': 'λ'}
+
         return filtered_fa
 
     def get_final_states(self):
@@ -105,6 +109,15 @@ class FiniteAutomata:
                     self_loops.append(edge)
         return self_loops
 
+    def remove_empty_transition_self_loops(self):
+        all_self_loops = []
+        for state in self.finite_automata['nodes']:
+            all_self_loops = all_self_loops +  self.get_self_loops(state['id'])
+
+        for loop in all_self_loops:
+            if(loop in self.finite_automata['edges'] and loop['label'] == 'λ'):
+                self.finite_automata['edges'].remove(loop)
+
     def is_dead_state(self, state_id):
         for node in self.finite_automata['nodes']:
             if(node['id'] == state_id):
@@ -189,6 +202,8 @@ class FiniteAutomata:
             self.remove_state_aux(state_id)
         
         return
+    
+
     # SOURCE: https://rpruim.github.io/m252/S19/from-class/models-of-computation/dfanfa-to-regular-expression.html
     def convert_fa_to_regex(self):
         finite_automata = copy.deepcopy(self.finite_automata)
@@ -202,6 +217,9 @@ class FiniteAutomata:
         # #print(f"\n IN DEGREE q0: {self.get_in_degree('q0')}")
         
         # #print(f"\n OUT DEGREE q0: {self.get_out_degree('q0')}")
+        
+        # 0 - Remove all self loops with empty transition
+        self.remove_empty_transition_self_loops()
         # 1 - Create a new initial state with a λ transition to the old start state (if its 'in degree' is != 0)
         #if(self.get_in_degree(self.initial_state['id']) > 0):
         new_initial_state = {'id': 'A', 'is_initial': False}
@@ -254,8 +272,8 @@ class FiniteAutomata:
                                 # Verify if any of the labels has an "or" (|)
                                 final_label_list = []
                                 label_pairs = []
-                                if('|' in current_label_1):
-                                    if('|' in current_label_2):
+                                if(current_label_1 and '|' in current_label_1):
+                                    if(current_label_2 and '|' in current_label_2):
                                         label_list_1 = current_label_1.split('|')
                                         label_list_2 = current_label_2.split('|')
                                         for label in label_list_1:
@@ -266,7 +284,7 @@ class FiniteAutomata:
                                         for label in label_list_1:
                                             label_pairs.append([label, current_label_2])
                                 else:
-                                    if('|' in current_label_2):
+                                    if(current_label_2 and '|' in current_label_2):
                                         label_list_2 = current_label_2.split('|')
                                         for label2 in label_list_2:
                                             label_pairs.append([current_label_1, label2])
@@ -280,11 +298,25 @@ class FiniteAutomata:
                                     #print(f"\n          PAIR {pair} \n")
                                     if(len(self_loops) > 0):
                                         for self_loop in self_loops:
-                                            for self_loop_transition in self_loop['label'].split('|'):
-                                                final_label_list.append(pair[0]+'('+(self_loop_transition)+')*'+pair[1])
+                                            split_self_loop = self_loop['label'].split('|')
+                                            for self_loop_transition in split_self_loop:
+                                                if(len(split_self_loop) > 1):
+                                                    label_to_append = pair[0]+'('+(self_loop['label'])+')*'+pair[1]
+                                                else:
+                                                    label_to_append = pair[0]+'('+(self_loop_transition)+')*'+pair[1]
+                                                if(not label_to_append in final_label_list):
+                                                        final_label_list.append(label_to_append)
                                                 if(not self_loop in transitions_to_remove):
                                                     transitions_to_remove.append(self_loop)
                                                 ##print(f"\n\n NEW TRANSITION ({pair[0]}({transition})*{pair[1]})\n\n")
+                                    # OLD LOOPS TREATMENT
+                                    # if(len(self_loops) > 0):
+                                    #     for self_loop in self_loops:
+                                    #         for self_loop_transition in self_loop['label'].split('|'):
+                                    #             final_label_list.append(pair[0]+'('+(self_loop_transition)+')*'+pair[1])
+                                    #             if(not self_loop in transitions_to_remove):
+                                    #                 transitions_to_remove.append(self_loop)
+                                    #             ##print(f"\n\n NEW TRANSITION ({pair[0]}({transition})*{pair[1]})\n\n")
                                             
                                     else:
                                         final_label_list.append(pair[0]+pair[1])

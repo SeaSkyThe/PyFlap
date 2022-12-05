@@ -17,9 +17,9 @@ let fa = []
 var q_counter = 0;
 var q_numbers_left = [];
 
-var color_initial = "#90EE90"
+var initial_shape = "triangle"
 var color_common = '#FFF'
-var final_shape = 'diamond'
+var final_color = '#FF7276'
 
 var cy = cytoscape({
     container: document.getElementById('cy'), // container to render in
@@ -45,13 +45,11 @@ var cy = cytoscape({
             selector: 'edge',
             style: {
                 'label': 'data(label)',
-                'loop-direction': '2deg',
+                'loop-direction': '0deg',
                 'loop-sweep': '90deg',
-                // 'text-margin-x': '12px',
-                // 'text-margin-y': '-12px',
                 'text-background-color': '#F8F9FA',
                 'text-background-opacity': 1,
-                'text-background-padding': '3px',
+                'text-background-padding': '2px',
                 'text-rotation': 'autorotate',
                 'text-events': 'yes',
                 'color': '#000000',
@@ -60,6 +58,8 @@ var cy = cytoscape({
                 'target-arrow-color': '#666',
                 'target-arrow-shape': 'triangle',
                 'curve-style': 'bezier',
+                'control-point-step-size': '3.3em',
+                'edge-distances': 'intersection',
             }
         },
         {
@@ -93,6 +93,11 @@ var cy = cytoscape({
 var eh = cy.edgehandles({
     canConnect: function (sourceNode, targetNode) {
         return true
+    },
+    edgeParams: function (sourceNode, targetNode) {
+        // for edges between the specified source and target
+        // return element object to be passed to cy.add() for edge
+        return { 'source': sourceNode, 'target': targetNode, data: { 'label': 'λ' } };
     },
     hoverDelay: 150, // time spent hovering over a target node before it is considered selected
     snap: true, // when enabled, the edge can be drawn by just moving close to a target node (can be confusing on compound graphs)
@@ -228,8 +233,10 @@ function btn_mark_initial_cy_handler(evt) {
 
     disable_current_initial();
 
-    //Initial changes color
-    node.style('background-color', color_initial);
+    //Initial changes shape
+    node.style('shape', initial_shape);
+    node.style('width', '3em');
+    node.style('height', '2.5em');
     node.data('is_initial', true);
 }
 
@@ -237,7 +244,10 @@ function disable_current_initial() {
     for (let i = 0; i < cy.nodes().length; i++) {
         if (cy.nodes()[i].data()['is_initial']) {
             cy.nodes()[i].data('is_initial', false);
-            cy.nodes()[i].style('background-color', color_common);
+            cy.nodes()[i].style('shape', 'ellipse');
+            cy.nodes()[i].style('width', '2.5em');
+            cy.nodes()[i].style('height', '2.5em');
+
         }
     }
 }
@@ -260,7 +270,7 @@ function button_mark_unmark_final_handler() {
 function btn_mark_final_cy_handler(evt) {
     var node = evt.target;
 
-    node.style('shape', final_shape);
+    node.style('background-color', final_color);
 
     node.data('is_final', true);
 
@@ -269,7 +279,7 @@ function btn_mark_final_cy_handler(evt) {
 function btn_unmark_final_cy_handler(evt) {
     var node = evt.target;
 
-    node.style('shape', "ellipse");
+    node.style('background-color', color_common);
     node.data('is_final', false);
 
 }
@@ -278,11 +288,6 @@ document.getElementById('button-mark-final').addEventListener('click', button_ma
 
 
 /// ============================================================= TEST TO SHOW OUR FINITE AUTOMATA AS A STRUCTURE =========================================
-function button_test_handler() {
-    console.log(cy.json());
-    console.log(cy.json().elements.nodes);
-}
-
 function getCookie(name) {
     var cookieValue = null;
     if (document.cookie && document.cookie !== '') {
@@ -316,9 +321,11 @@ async function verifySentence() {
 
         if (data.sentence_accepted === "true") {
             document.getElementById("sentence-input").style.borderColor = 'green';
+            document.getElementById("regex-text").innerText = "Regex: " + data.regex;
             return true
         } else if (data.sentence_accepted === "false") {
             document.getElementById("sentence-input").style.borderColor = 'red';
+            document.getElementById("regex-text").innerText = "Regex: " + data.regex;
             return false
         }
         else {
