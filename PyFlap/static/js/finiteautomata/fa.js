@@ -30,7 +30,6 @@ var cy = cytoscape({
         {
             selector: 'node',
             style: {
-                'is_initial': 'data(is_initial)',
                 'background-color': color_common,
                 'border-color': '#000',
                 'border-width': 1,
@@ -46,6 +45,8 @@ var cy = cytoscape({
             selector: 'edge',
             style: {
                 'label': 'data(label)',
+                'loop-direction': '2deg',
+                'loop-sweep': '90deg',
                 // 'text-margin-x': '12px',
                 // 'text-margin-y': '-12px',
                 'text-background-color': '#F8F9FA',
@@ -274,12 +275,68 @@ function btn_unmark_final_cy_handler(evt) {
 }
 
 document.getElementById('button-mark-final').addEventListener('click', button_mark_unmark_final_handler);
+
+
+/// ============================================================= TEST TO SHOW OUR FINITE AUTOMATA AS A STRUCTURE =========================================
+function button_test_handler() {
+    console.log(cy.json());
+    console.log(cy.json().elements.nodes);
+}
+
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = cookies[i].trim();
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+async function verifySentence() {
+    let url = window.location.href;
+    let sentence_to_verify = document.getElementById("sentence-input").value
+    let data = { 'finite_automata': cy.json().elements, 'sentence': sentence_to_verify };
+    let csrftoken = getCookie('csrftoken');
+    // Default options are marked with *
+    const response = await fetch(url, {
+        method: 'POST', // *GET, POST, PUT, DELETE, etc.
+        headers: { "X-CSRFToken": csrftoken, "X-Requested-With": "XMLHttpRequest" },
+        body: JSON.stringify(data) // body data type must match Content-Type header
+    })
+
+    if (response.status === 200) {
+        let data = await response.json()
+        console.log(data);
+
+        if (data.sentence_accepted === "true") {
+            document.getElementById("sentence-input").style.borderColor = 'green';
+            return true
+        } else if (data.sentence_accepted === "false") {
+            document.getElementById("sentence-input").style.borderColor = 'red';
+            return false
+        }
+        else {
+            window.alert(data.message)
+            return false
+        }
+    }
+
+    //window.location.assign(response.url);
+    return false
+}
+document.getElementById('sentence-button').addEventListener('click', verifySentence);
+
 // 1. Adicionar e remover nós --- DONE
 //    1.1 Nós são nomeados de q0...qn --- DONE
 // 2. Ligar nós por setas - edges (arrasta de um nó para outro) --- DONE
 //    2.1 Ligar um nó a ele mesmo. --- DONE
 //    2.2 Ligações valoradas (podendo ser vazio) --- DONE
-// TODO
-// 3. Marcar nós como inicial ou final.
+// 3. Marcar nós como inicial ou final. -- DONE
 // 4. Mover nós --- DONE
 //
