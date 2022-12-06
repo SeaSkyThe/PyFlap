@@ -2,11 +2,11 @@ from django.shortcuts import render
 import json
 from django.http import HttpResponse, JsonResponse
 from finiteautomata.finite_automata import FiniteAutomata
-
+from django.views.decorators.csrf import csrf_exempt
 import re
 # Create your views here.
 
-
+@csrf_exempt
 def fa_page(request):
     if(request.is_ajax()):
         # Verify if automata is valid
