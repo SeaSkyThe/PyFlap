@@ -1,0 +1,54 @@
+#sub-title {
+    font-size: 22px;
+    color: #17A2B8;
+    font-weight: 600;
+}
+
+#sub-title-div {
+    text-align: center;
+}
+
+.content-page-fa {}
+
+#buttons-div {
+    padding-bottom: 1%;
+    display: flex;
+}
+
+#left-buttons {
+    flex: 1;
+}
+
+.button-selected {
+    background-color: #17A2B8;
+}
+
+#button-cursor,
+#button-add,
+#button-remove,
+#button-edge,
+#button-mark-initial,
+#button-mark-final,
+#sentence-button {}
+
+#button-cursor:hover,
+#button-add:hover,
+#button-remove:hover,
+#button-edge:hover,
+#button-mark-initial:hover,
+#button-mark-final:hover,
+#sentence-button:hover {
+    background-color: #17A2B8;
+    transition: all ease 0.2s;
+}
+
+#cy {
+    border: 2px solid #17A2B8;
+    height: 80%;
+}
+
+
+#input-div {
+    padding-top: 1%;
+    text-align: center;
+}

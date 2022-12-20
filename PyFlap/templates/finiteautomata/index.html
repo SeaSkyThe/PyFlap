@@ -1,0 +1,36 @@
+{% extends 'base-fa.html' %} 
+{% load static %}
+{% block content %}
+{% load custom_tags %}
+
+    <div id="sub-title-div"><span id="sub-title" >Finite Automata Simulation</span></div>
+
+    <div id="sub-title-div"><span style='font-size:18px;'><a href="https://github.com/SeaSkyThe/PyFlap/blob/FiniteAutomata/README.md#instructions-to-use-the-finite-automata-page">Instructions</a></span></div>
+    <link rel="stylesheet" href="{% static 'css/finiteautomata/fa-page.css'%}" />
+
+    <div id="buttons-div">
+        <div id="left-buttons">
+            <button id="button-cursor" title="Move"><img src="https://img.icons8.com/ios-glyphs/30/null/cursor--v1.png"/></button> <!-- Cursor normal -->
+            <button id="button-add" title="Add new state"><img src="https://img.icons8.com/ios-glyphs/30/null/plus-math.png"/></button> <!-- ADD node -->
+            <button id="button-remove" title="Remove something"><img src="https://img.icons8.com/material-two-tone/30/null/delete-sign.png"/></button> <!-- REMOVE node -->
+            <button id="button-edge" title="Add new transition"><img style="transform: rotate(90deg);-moz-transform: rotate(90deg); -ms-transform: rotate(90deg);-webkit-transform: rotate(90deg); " src="https://img.icons8.com/ios-filled/30/null/long-arrow-up.png" /></button> <!-- EDGE -->
+        </div>
+        <div id="right-buttons">
+            <button id="button-mark-initial" title="Mark state as initial"><img src="https://img.icons8.com/ios-filled/30/null/initial-state.png"/></button> <!-- initial -->
+            <button id="button-mark-final" title="Mark state as final"><img src="https://img.icons8.com/material-sharp/30/null/final-state.png"/></button> <!-- final -->
+        </div>        
+    </div>
+    <div id="cy">
+        
+    </div>
+    
+    <div id="input-div">
+        <input id="sentence-input" type="text">
+        <button id="sentence-button">TEST</button>
+        <br>
+        <br>
+        <p id="regex-text"></p>
+    </div>
+
+    <script src="{% static 'js/finiteautomata/index.js' %}" type="text/javascript"></script>
+{% endblock %}

@@ -44,7 +44,7 @@ def verify_regex(regex, string):
     print(f'\nVerifying REGEX: {regex} for string {string}\n')
     try: # if re.compile works
         valid = re.compile(regex)
-        if(valid.match(string)):
+        if(valid.fullmatch(string)):
             return True
         else:
             return False

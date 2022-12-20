@@ -22,5 +22,5 @@ urlpatterns = [
     path('', TemplateView.as_view(template_name='home/index.html'), name='homepage'),
     path('regularexpressions/', include('regularexpressions.urls')),
     path('grammars/', include('grammars.urls')),
-    #path('finiteautomata/', include('finiteautomata.urls')),
+    path('finiteautomata/', include('finiteautomata.urls')),
 ]
