@@ -4,6 +4,7 @@ class FiniteAutomata:
         self.finite_automata = self.clean_fa(raw_fa)
         self.final_states = self.get_final_states()
         self.initial_state = self.get_initial_state()
+        self.right_linear_grammar = self.convert_fa_to_right_linear_grammar()
 
     # AUXILIAR  FUNCTIONS TO MANAGE FINITE AUTOMATA
     def clean_fa(self, finite_automata):
@@ -383,3 +384,56 @@ class FiniteAutomata:
                     return regex
 
         return regex
+    
+    def convert_fa_to_right_linear_grammar(self):
+        mapping = {'q0': 'A', 'q1': 'B', 'q2': 'C', 'q3': 'D', 'q4': 'E',
+                   'q5': 'F', 'q6': 'G', 'q7': 'H', 'q8': 'I', 'q9': 'J',
+                   'q10': 'K', 'q11': 'L', 'q12': 'M', 'q13': 'N', 'q14': 'O',
+                   'q15': 'P', 'q16': 'Q', 'q17': 'R', 'q18': 'S', 'q19': 'T',
+                   'q20': 'U', 'q21': 'V', 'q22': 'W', 'q23': 'X', 'q24': 'Y', 'q25': 'Z'}
+        output_grammar = {}
+        
+        terminals = []
+        non_terminals = []
+        rules = []
+        initial = ''
+        for state in self.finite_automata['nodes']:
+            # Substituindo q0 por A, q1 por B e etc...
+            state_id = state['id']
+            state_id = state_id.replace(state_id, mapping[state_id])
+            for rule in self.finite_automata['edges']:
+                current_rule = ''
+                current_source = ''
+                current_target = ''
+                if(rule['source'] == state['id']):
+                    # Substituindo q0 por A, q1 por B e etc...
+                    current_source = rule['source']
+                    current_source = current_source.replace(current_source, mapping[current_source])
+                    current_target = rule['target']
+                    current_target = current_target.replace(current_target, mapping[current_target])
+                    
+                    current_rule = current_source + ' -> ' + rule['label']+current_target
+                    rules.append(current_rule)
+                    
+                    # Atualizando lista de rules, terminais e nao terminais
+                    if(rule['label'] not in terminals):
+                        terminals.append(rule['label'])
+                    if(current_source not in non_terminals):
+                        non_terminals.append(current_source)
+                    if(current_target not in non_terminals):
+                        non_terminals.append(current_target)
+            
+            if(state.get('is_final', False) is True):
+                rules.append(state_id + ' -> ' + 'ε')
+            if(state.get('is_initial', False) is True):
+                initial = state_id
+        
+        output_grammar['terminals'] = terminals
+        output_grammar['non_terminals'] = non_terminals
+        output_grammar['rules'] = rules
+        output_grammar['initial'] = initial
+
+        #print(output_grammar)
+        return output_grammar
+
+        

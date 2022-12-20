@@ -26,6 +26,8 @@ def fa_page(request):
             sentence=''
         
         try:
+            grammar = fa.right_linear_grammar
+            print(grammar)
             regex = fa.convert_fa_to_regex()
         except:
             return JsonResponse({'sentence_accepted': 'error', 'message': error_message})
