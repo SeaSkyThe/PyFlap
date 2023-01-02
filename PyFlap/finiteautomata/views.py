@@ -3,6 +3,7 @@ import json
 from django.http import HttpResponse, JsonResponse
 from finiteautomata.finite_automata import FiniteAutomata
 from django.views.decorators.csrf import csrf_exempt
+from grammars.views import Rule, Grammar
 import re
 # Create your views here.
 
@@ -26,7 +27,25 @@ def fa_page(request):
             sentence=''
         
         try:
+            grammar = fa.right_linear_grammar # Pegando o automatoto convertido em gramatica
+            
+            # Substituindo a gramatica existente por essa criada
+            Rule.objects.all().delete()
+            grammar_obj = Grammar.load()
+            grammar_obj.initial = grammar['initial']
+            print(grammar_obj)
+            for rule in grammar['rules']:
+                rule_split = rule.split('->')
+                left_side = rule_split[0].strip()
+                right_side = rule_split[1].strip()
+                Rule.create(grammar=grammar_obj, left_side=left_side, right_side=right_side)
+
+            grammar_definition = grammar_obj.generate_definition()
+
             regex = fa.convert_fa_to_regex()
+            
+            grammar_obj.regex = regex
+            grammar_obj.save()
         except:
             return JsonResponse({'sentence_accepted': 'error', 'message': error_message})
         raw_regex = r'{}'.format(regex)
@@ -36,9 +55,9 @@ def fa_page(request):
         #print('\n matcha ', matcha, "\n")
         if(matcha and matcha.group()):
             #return HttpResponse({'sentence_accepted': False})
-            return JsonResponse({'sentence_accepted': 'true', 'regex':regex})  
+            return JsonResponse({'sentence_accepted': 'true', 'regex':regex, 'grammar': json.dumps(grammar), 'grammar_definition': grammar_definition})  
         else:
-            return JsonResponse({'sentence_accepted': 'false', 'regex':regex})
+            return JsonResponse({'sentence_accepted': 'false', 'regex':regex, 'grammar': json.dumps(grammar), 'grammar_definition': grammar_definition})
         
         
     if(request.method == 'GET'):

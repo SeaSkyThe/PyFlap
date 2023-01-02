@@ -20,6 +20,7 @@ class SingletonModel(models.Model): # SINGLETON
 class Grammar(SingletonModel): # GRAMATICA SÓ EXISTE 1
     name = models.CharField(max_length=30, default="grammar")
     initial = models.CharField(max_length=1, default="S")
+    regex = models.CharField(max_length=1000, default="")
 
     def generate_definition(self) -> str: # Funcao que gera a definicao da gramatica no formato G = ({S, A}, {a, b}, P, S)
         terminals = []
@@ -37,7 +38,11 @@ class Grammar(SingletonModel): # GRAMATICA SÓ EXISTE 1
                     if symbol.islower() and not symbol in terminals:
                         terminals.append(symbol)
         
-        non_terminals.remove(self.initial) # removendo o simbolo inicial para ordernar a lista e manter ele em primeiro
+        try:
+            non_terminals.remove(self.initial) # removendo o simbolo inicial para ordernar a lista e manter ele em primeiro
+        except:
+            self.initial = ''
+            
         non_terminals.sort()
         terminals.sort()
 
@@ -110,6 +115,13 @@ class Grammar(SingletonModel): # GRAMATICA SÓ EXISTE 1
     #     print(f"------------------------------------------------------------------------------------------------------------------------------\n")
     #     return done
     def test_sentence(self, sentence: str, index: int, currentNonTerminal: str) -> bool:
+        print("\n\nREGEX: ", self.regex)
+        if(self.regex != ""):
+            matcha = re.fullmatch(self.regex, sentence)
+            if(matcha and matcha.group()):
+                return True
+            else:
+                return False
         #Se não foi passado nenhum não terminal - é a primeira iteracao
         if(not currentNonTerminal): 
             currentNonTerminal = self.initial # Se nenhum 'não terminal' foi passado, devemos iniciar pelo simbolo inicial da função.

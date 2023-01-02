@@ -52,3 +52,11 @@
     padding-top: 1%;
     text-align: center;
 }
+
+#regex-text,
+#grammar-text {
+    font-weight: 600;
+    margin-left: 5px;
+    cursor: default;
+    color: #48a87a;
+}

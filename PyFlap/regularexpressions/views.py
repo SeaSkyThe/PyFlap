@@ -2,9 +2,11 @@ from email import header
 from django.shortcuts import render, HttpResponse
 from django.http import JsonResponse
 import re
+from django.views.decorators.csrf import csrf_exempt
 
 from .forms import RegexForm
 # Create your views here.
+@csrf_exempt
 def regex_page(request):
     context = {
 
