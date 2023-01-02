@@ -38,7 +38,11 @@ class Grammar(SingletonModel): # GRAMATICA SÓ EXISTE 1
                     if symbol.islower() and not symbol in terminals:
                         terminals.append(symbol)
         
-        non_terminals.remove(self.initial) # removendo o simbolo inicial para ordernar a lista e manter ele em primeiro
+        try:
+            non_terminals.remove(self.initial) # removendo o simbolo inicial para ordernar a lista e manter ele em primeiro
+        except:
+            self.initial = ''
+            
         non_terminals.sort()
         terminals.sort()
 
