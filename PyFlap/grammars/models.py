@@ -115,7 +115,7 @@ class Grammar(SingletonModel): # GRAMATICA SÓ EXISTE 1
     #     print(f"------------------------------------------------------------------------------------------------------------------------------\n")
     #     return done
     def test_sentence(self, sentence: str, index: int, currentNonTerminal: str) -> bool:
-        print("\n\nREGEX: ", self.regex)
+        #print("\n\nREGEX: ", self.regex)
         if(self.regex != ""):
             matcha = re.fullmatch(self.regex, sentence)
             if(matcha and matcha.group()):
@@ -135,8 +135,9 @@ class Grammar(SingletonModel): # GRAMATICA SÓ EXISTE 1
         
         # Se de alguma forma o index for maior que o tamanho da sentença, ocorreu algo errado
         if(index >= len(sentence)):
-            print('Problem with the solution. End of sentence.')
-            return False
+            # print('Problem with the solution. End of sentence.')
+            # return False
+            sentence = sentence + "ε"
         
         
         # Iniciando teste
@@ -155,6 +156,7 @@ class Grammar(SingletonModel): # GRAMATICA SÓ EXISTE 1
             for derivation in rule.right_side.split('|'): # Para cada derivação existente no lado direito
                 currentIndex = index 
                 for symbol in derivation: # Para cada simbolo na derivação
+                    #print(symbol)
                     if(isNonTerminal(symbol)): # Verifica se o simbolo é não terminal, se for, deriva ele recursivamente
                         print(f"Non terminal symbol '{symbol}' found. Recursively devirating it from sentence = '{sentence}' currentIndex = '{currentIndex}' symbol = '{symbol}'")
                         done = self.test_sentence(sentence, currentIndex, symbol)
@@ -173,11 +175,11 @@ class Grammar(SingletonModel): # GRAMATICA SÓ EXISTE 1
                             done = True
                             print(f"\nRecursion finished: Sentence = '{sentence}' CurrentIndex = '{currentIndex}' Symbol = '{currentNonTerminal}' | Result = {done}\n")
                             print(f"------------------------------------------------------------------------------------------------------------------------------\n")
-                            return done
+                            #return done
                         else:
                             done = False
                     elif(symbol == 'ε'):
-                        if(sentence == ''):
+                        if(sentence == 'ε' or sentence == " "):
                             print(f'Empty sentence is allowed. Sentence is valid.')
                             return True
                         if(currentIndex == len(sentence)):
@@ -233,7 +235,7 @@ class Rule(models.Model):
 
 def isNonTerminal(symbol):
     valid = re.compile('[A-Z]')
-    if(valid.match(symbol)):
+    if(valid.fullmatch(symbol)):
         return True
     else:
         return False
