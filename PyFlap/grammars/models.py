@@ -120,7 +120,8 @@ class Grammar(SingletonModel): # GRAMATICA SÓ EXISTE 1
             matcha = re.fullmatch(self.regex, sentence)
             if(matcha and matcha.group()):
                 return True
-        
+            else:
+                return False
         #Se não foi passado nenhum não terminal - é a primeira iteracao
         if(not currentNonTerminal): 
             currentNonTerminal = self.initial # Se nenhum 'não terminal' foi passado, devemos iniciar pelo simbolo inicial da função.
