@@ -319,6 +319,22 @@ async function verifySentence() {
         let data = await response.json()
         console.log(data);
 
+        // Building grammar visualization
+        try {
+            let grammar = JSON.parse(data.grammar);
+            let grammar_formal_definition = data.grammar_definition;
+
+            let grammar_rules = ""
+            for (const rule_index in grammar.rules) {
+                grammar_rules = grammar_rules + grammar.rules[rule_index] + "\n"
+            }
+            grammar_rules = grammar_rules.substring(0, grammar_rules.length - 1);
+
+            document.getElementById("grammar-text").innerText = "Grammar: " + grammar_formal_definition + "\n" + grammar_rules + "\n";
+        } catch {
+
+        }
+        // END grammar visualization
         if (data.sentence_accepted === "true") {
             document.getElementById("sentence-input").style.borderColor = 'green';
             document.getElementById("regex-text").innerText = "Regex: " + data.regex;

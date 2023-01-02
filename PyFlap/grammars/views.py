@@ -3,8 +3,10 @@ from django.urls import reverse
 from .forms import GrammarForm, GrammarTestForm
 from .models import Grammar, Rule, create_tree_with_grammar
 from django.http import HttpResponse, HttpResponseRedirect
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
+@csrf_exempt
 def grammars_page(request):
     context = {
         
