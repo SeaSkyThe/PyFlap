@@ -1,7 +1,7 @@
 {% extends 'base.html' %} 
 {% load static %}
 {% block content %}
-<span id="sub-title" >Regex Validation</span>
+<span id="sub-title" >Validação de Regex</span>
 <link rel="stylesheet" href="{% static 'css/regex/regex-page.css'%}" />
 <form method="post" action="{% url 'regex_page' %}" id="regexForm" action="" method="post" class="regex-form">
     {% csrf_token %} 
@@ -17,7 +17,7 @@
                         <tbody>
                             <tr>  <!-- TEXTO DO INPUT DO REGEX -->
                                 <td>
-                                    <label id="regex_label" for="regex">Your regular expression:</label>
+                                    <label id="regex_label" for="regex">Sua expressão regular:</label>
                                 </td>
                                 <td id="invalid_regex">&nbsp;
                                 </td>
@@ -29,7 +29,7 @@
                             </tr>
                             <tr><!-- TEXTO DO INPUT DA STRING DE TESTE -->
                                 <td colspan="2">
-                                    <label id="test_string_label" for="test_string">Test string 1:</label>
+                                    <label id="test_string_label" for="test_string">String de teste 1:</label>
                                 </td>
                             </tr>
                             <tr><!-- INPUT DA STRING DE TESTE -->
@@ -40,7 +40,7 @@
 
                             <tr><!-- TEXTO DO INPUT DA STRING DE TESTE -->
                                 <td colspan="2">
-                                    <label id="test_string_label" for="test_string">Test string 2:</label>
+                                    <label id="test_string_label" for="test_string">String de teste 2:</label>
                                 </td>
                             </tr>
                             <tr><!-- INPUT DA STRING DE TESTE -->
@@ -52,7 +52,7 @@
                             <tr>
                                 <td colspan="2"> <!-- BOTAO DE VALIDAR -->
                                     <div id="test_button_div">
-                                        <button id="test_button" type="submit" class="btn">TEST</button>
+                                        <button id="test_button" type="submit" class="btn">Teste</button>
                                     </div>
                                     {% if invalid_regex %}
                                         <!-- <p style="color: red;">INVALID REGEX SENTENCE: {{error_message}}</p> -->
@@ -85,7 +85,7 @@
                             <tr> <!-- LINK PARA CHEATSHEET DE REGEX-->
                                 <td>
                                     <a href="https://cheatography.com/davechild/cheat-sheets/regular-expressions/" target="_blank">
-                                        <p class="cheatsheet-link">Regular Expression Cheatsheet</p>
+                                        <p class="cheatsheet-link">Regex Cheatsheet</p>
                                     </a>
                                 </td>
                                 

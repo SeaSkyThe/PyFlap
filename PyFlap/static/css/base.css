@@ -60,12 +60,14 @@ a {
 }
 
 span#title {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Bebas Neue', sans-serif;
     font-size: 5em;
     font-weight: bold;
-    color: #444444;
-    letter-spacing: -1px;
+    /* color: rgb(86, 151, 185); */
+    color: #17A2B8;
+    letter-spacing: 1px;
     text-align: center;
+    /* text-decoration: underline; */
 }
 
 /* FORM */

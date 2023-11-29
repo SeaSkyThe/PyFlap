@@ -2,7 +2,7 @@
 {% load static %}
 {% block content %}
 {% load custom_tags %}
-<span id="sub-title" >Regular Grammars Validation (GLD or GLUD)</span>
+<span id="sub-title" >Validação de Gramáticas Regulares (GLD ou GLUD)</span>
 <link rel="stylesheet" href="{% static 'css/grammars/grammars-page.css'%}" />
  
 <table id="whole_table">
@@ -15,7 +15,7 @@
                             {% csrf_token %}
                             <tr>  <!-- TEXTO DO INPUT DO SIMBOLO INICIAL -->
                                 <td>
-                                    <label id="grammar_initial_symbol_label" for="grammarForm">Type your grammar initial symbol: </label>
+                                    <label id="grammar_initial_symbol_label" for="grammarForm">Digite o símbolo inicial: </label>
                                     {{ grammarform.grammarInitial }}
                                 </td>
                                 
@@ -23,7 +23,7 @@
 
                             <tr>  <!-- TEXTO DO INPUT DA REGRA -->
                                 <td>
-                                    <label id="grammar_label" for="grammarForm">To add a rule to your grammar, type it below: </label>
+                                    <label id="grammar_label" for="grammarForm">Para adicionar uma regra gramatical, digite abaixo: </label>
                                 </td>
                                 
                             </tr> 
@@ -38,7 +38,7 @@
                             <tr>
                                 <td colspan="2"> <!-- BOTAO DE ADICIONAR REGRA -->
                                     <div id="add_rule_button_div">
-                                        <button id="add_rule_button" type="submit" class="btn">ADD RULE</button>
+                                        <button id="add_rule_button" type="submit" class="btn">Adicionar Regra</button>
                                     </div>
                                 </td>
                             </tr>
@@ -48,7 +48,7 @@
                             <tr><!-- TEXTO DO INPUT DA STRING DE TESTE -->
                                 <td colspan="2">
                                     <br>
-                                    <label id="test_string_label" for="test_string">Your sentence to test the grammar:</label>
+                                    <label id="test_string_label" for="test_string">Sentença para testar a gramática:</label>
                                 </td>
                             </tr>
                             <tr><!-- INPUT DA STRING DE TESTE -->
@@ -73,7 +73,7 @@
                             <tr>
                                 <td colspan="2"> <!-- BOTAO DE VALIDAR -->
                                     <div id="test_button_div">
-                                        <button id="test_button" type="submit" class="btn">TEST</button>
+                                        <button id="test_button" type="submit" class="btn">Teste</button>
                                     </div>
                                 </td>
                             </tr>
@@ -90,9 +90,9 @@
                             <tr>  <!-- TEXTO TITULO - SUA GRAMATICA -->
                                 <td class="text-center">
                                     {% if grammar_definition %}
-                                        <p id="rules_label" for="grammar" >Your Grammar: {{grammar_definition}}</p>
+                                        <p id="rules_label" for="grammar" >Sua gramática: {{grammar_definition}}</p>
                                     {% else %}
-                                    <p id="rules_label" for="grammar" >Your Grammar</p>
+                                    <p id="rules_label" for="grammar" >Sua gramática</p>
                                     {% endif %}
                                     
                                 </td>
@@ -132,7 +132,7 @@
                                 <tr>
                                     <td colspan="2"> <!-- BOTAO DE CLEAR -->
                                         <div id="clear_button_div">
-                                            <a href="{% url 'delete_all_rules' %}"><button id="clear_button" type="submit" class="btn">CLEAR</button></a>
+                                            <a href="{% url 'delete_all_rules' %}"><button id="clear_button" type="submit" class="btn">Limpar</button></a>
                                         </div>
                                     </td>
                                 </tr>
